@@ -50,7 +50,6 @@
       text-align: center;
     }
 
-    /* ===== HERO ===== */
     .hero {
       background: white;
       padding: 80px 0;
@@ -117,7 +116,6 @@
       color: white;
     }
 
-    /* ===== GRID ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -141,7 +139,6 @@
       margin-bottom: 10px;
     }
 
-    /* ===== FEATURES LIST ===== */
     .features {
       list-style: none;
       padding: 0;
@@ -151,14 +148,12 @@
       margin-bottom: 12px;
     }
 
-    /* ===== PRICE ===== */
     .price {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--primary);
     }
 
-    /* ===== TABLE ===== */
     .table-wrap {
       overflow-x: auto;
       border-radius: 20px;
@@ -199,7 +194,6 @@
       color: var(--primary);
     }
 
-    /* ===== HIGHLIGHT ===== */
     .highlight {
       background: white;
       border-left: 6px solid var(--accent);
@@ -217,7 +211,6 @@
       color: var(--accent);
     }
 
-    /* ===== CTA ===== */
     .cta {
       background: var(--primary);
       color: white;
@@ -244,7 +237,6 @@
       background: #e6a03a;
     }
 
-    /* ===== CONTACT ===== */
     #contact .card p {
       margin: 8px 0;
     }
@@ -292,7 +284,47 @@
       color: var(--primary);
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== TESTS SECTION ===== */
+    .test-card {
+      background: white;
+      padding: 20px 22px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: 0.3s;
+      border-left: 6px solid var(--accent);
+    }
+    .test-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+    .test-card h4 { font-size: 1.1rem; color: #0b2b4a; margin-bottom: 0.3rem; }
+    .test-card p { font-size: 0.9rem; color: #3a5a7a; margin-bottom: 0.8rem; }
+    .test-card .btn-sm {
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+    .test-card .btn-sm:hover { transform: scale(1.02); opacity: 0.9; }
+    .test-card .btn-blue { background: #4a76a8; }
+    .test-card .btn-gold { background: #8a8a3a; }
+    .test-card .btn-green { background: #5a8a3a; }
+    .test-card .btn-orange { background: #e87a3a; }
+    .test-card .btn-brown { background: #a85a3a; }
+    .test-card .btn-red { background: #6a3a3a; }
+
+    .access-note {
+      background: #fef9e7;
+      border-left: 6px solid #f5b042;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+    .access-note a { color: #0b2b4a; font-weight: 600; }
+
     footer {
       background: white;
       padding: 40px;
@@ -302,42 +334,95 @@
       border-top: 1px solid #eee;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeInUp 0.3s ease;
+    }
+    .modal h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .modal p { color: #6a7e96; margin-bottom: 1.5rem; }
+    .modal .contact-options { display: flex; flex-direction: column; gap: 0.8rem; }
+    .modal .contact-options a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      color: white;
+      font-size: 1rem;
+    }
+    .modal .contact-options a:hover { transform: scale(1.02); opacity: 0.9; }
+    .modal .contact-options .telegram { background: #0088cc; }
+    .modal .contact-options .whatsapp { background: #25d366; }
+    .modal .contact-options .vk { background: #4a76a8; }
+    .modal .contact-options .max { background: #2d2d2d; }
+    .modal .close-modal {
+      margin-top: 1.2rem;
+      background: none;
+      border: none;
+      color: #6a7e96;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .modal .close-modal:hover { color: #0b2b4a; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 700px) {
-      .hero {
-        padding: 60px 0;
-      }
-
-      .logo {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.6rem;
-      }
-
-      section {
-        padding: 50px 0;
-      }
-
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      th, td {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-      }
+      .hero { padding: 60px 0; }
+      .logo { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      section { padding: 50px 0; }
+      .buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; text-align: center; }
+      th, td { padding: 10px 12px; font-size: 0.85rem; }
+      .modal { padding: 1.8rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ===== CONTACT MODAL ===== -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <h2>📱 Выберите способ связи</h2>
+      <p>Нажмите на удобный для вас мессенджер, чтобы записаться на пробный урок:</p>
+      <div class="contact-options">
+        <a href="https://t.me/+79521212943" target="_blank" class="telegram">💬 Telegram</a>
+        <a href="https://wa.me/79521212943" target="_blank" class="whatsapp">💚 WhatsApp</a>
+        <a href="https://vk.ru/club226065699" target="_blank" class="vk">📱 VKontakte</a>
+        <a href="https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg" target="_blank" class="max">⚡ MAX</a>
+      </div>
+      <button class="close-modal" onclick="closeModal()">✕ Закрыть</button>
+    </div>
+  </div>
 
   <!-- ===== HERO ===== -->
   <section class="hero">
@@ -351,12 +436,8 @@
         Онлайн и офлайн в Рязани.
       </p>
       <div class="buttons">
-        <a class="btn primary" href="#contact">
-          🎉 Бесплатный пробный урок
-        </a>
-        <a class="btn secondary" href="details.html">
-          📖 Полная информация
-        </a>
+        <a class="btn primary" onclick="openModal(event)">🎉 Бесплатный пробный урок</a>
+        <a class="btn secondary" href="details.html">📖 Полная информация</a>
       </div>
     </div>
   </section>
@@ -412,7 +493,6 @@
     <div class="container">
       <h2>Стоимость</h2>
 
-      <!-- Individual Tariffs -->
       <div class="table-caption">📘 Индивидуальные занятия</div>
       <div class="table-wrap">
         <table>
@@ -435,7 +515,6 @@
         </table>
       </div>
 
-      <!-- Two-Student Tariffs -->
       <div class="table-caption" style="margin-top: 30px;">👥 Занятия для двоих студентов</div>
       <div class="table-wrap">
         <table>
@@ -532,6 +611,71 @@
     </div>
   </section>
 
+  <!-- ===== TESTS SECTION ===== -->
+  <section>
+    <div class="container">
+      <h2>📝 Тесты и диагностика</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 1.5rem; color: #3a5a7a;">
+        Пройдите бесплатные онлайн-тесты для определения вашего уровня английского языка.
+        <strong>Для доступа требуется авторизация.</strong>
+      </p>
+
+      <div class="access-note">
+        <p>🔐 <strong>Для доступа к тестам требуется авторизация.</strong> Если вы ещё не получили разрешение от преподавателя, свяжитесь с нами через один из мессенджеров:</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:0.8rem;">
+          <a href="https://t.me/+79521212943" target="_blank" style="background:#0088cc; color:white; padding:0.4rem 1.2rem; border-radius:30px; text-decoration:none; font-weight:600; font-size:0.85rem;">💬 Telegram</a>
+          <a href="https://wa.me/79521212943" target="_blank" style="background:#25d366; color:white; padding:0.4rem 1.2rem; border-radius:30px; text-decoration:none; font-weight:600; font-size:0.85rem;">💚 WhatsApp</a>
+          <a href="https://vk.ru/club226065699" target="_blank" style="background:#4a76a8; color:white; padding:0.4rem 1.2rem; border-radius:30px; text-decoration:none; font-weight:600; font-size:0.85rem;">📱 VK</a>
+          <a href="https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg" target="_blank" style="background:#2d2d2d; color:white; padding:0.4rem 1.2rem; border-radius:30px; text-decoration:none; font-weight:600; font-size:0.85rem;">⚡ MAX</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- 1. Young Learners -->
+        <div class="test-card" style="border-left-color: #4a76a8;">
+          <h4>🧒 Young Learners</h4>
+          <p>Cambridge YLE Sample Tests. Для детей 7–12 лет. ~30 мин.</p>
+          <a href="test-young-learners.html" class="btn-sm btn-blue">Перейти к тесту →</a>
+        </div>
+
+        <!-- 2. Teens -->
+        <div class="test-card" style="border-left-color: #8a8a3a;">
+          <h4>🧑‍🎓 Teens</h4>
+          <p>Cambridge Sample Exams for Schools. Для подростков 12–17 лет. ~30 мин.</p>
+          <a href="test-teens.html" class="btn-sm btn-gold">Перейти к тесту →</a>
+        </div>
+
+        <!-- 3. Adults -->
+        <div class="test-card" style="border-left-color: #5a8a3a;">
+          <h4>👤 Adults</h4>
+          <p>Cambridge Test Your English – General English. ~25 мин.</p>
+          <a href="test-adults.html" class="btn-sm btn-green">Перейти к тесту →</a>
+        </div>
+
+        <!-- 4. IELTS -->
+        <div class="test-card" style="border-left-color: #e87a3a;">
+          <h4>🎓 IELTS Preparation</h4>
+          <p>British Council IELTS Practice (via EF SET). 50 мин.</p>
+          <a href="test-ielts.html" class="btn-sm btn-orange">Перейти к тесту →</a>
+        </div>
+
+        <!-- 5. Cambridge Exams -->
+        <div class="test-card" style="border-left-color: #a85a3a;">
+          <h4>📜 Cambridge Exams</h4>
+          <p>Official Sample Papers (via EF SET). 50 мин.</p>
+          <a href="test-cambridge.html" class="btn-sm btn-brown">Перейти к тесту →</a>
+        </div>
+
+        <!-- 6. Russian OGE/EGE -->
+        <div class="test-card" style="border-left-color: #6a3a3a;">
+          <h4>🇷🇺 Russian OGE/EGE</h4>
+          <p>Official FIPI Demo Papers (via EF SET). 15 мин.</p>
+          <a href="test-russian-exams.html" class="btn-sm btn-red">Перейти к тесту →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CTA ===== -->
   <section class="cta">
     <div class="container">
@@ -540,7 +684,7 @@
         Познакомьтесь с преподавателем, определите свой уровень
         и получите персональный план обучения.
       </p>
-      <a class="btn" href="#contact">Записаться</a>
+      <a class="btn" onclick="openModal(event)">Записаться</a>
     </div>
   </section>
 
@@ -560,17 +704,29 @@
             <a href="https://t.me/+79521212943" target="_blank">💬 Telegram</a>
             <a href="https://vk.ru/club226065699" target="_blank">📱 VK</a>
             <a href="https://wa.me/79521212943" target="_blank">💚 WhatsApp</a>
-            <a href="https://t.me/+79521212943" target="_blank" class="max-link">⚡ MAX</a>
+            <a href="https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg" target="_blank" class="max-link">⚡ MAX</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <p>© 2026 English To Perfection — Все права защищены.</p>
   </footer>
+
+  <script>
+    function openModal(e) {
+      e.preventDefault();
+      document.getElementById('contactModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('active');
+    }
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
 
 </body>
 </html>
