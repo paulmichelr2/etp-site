@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English To Perfection | Курсы английского языка</title>
+
+  <style>
+    :root {
+      --primary: #0b2b4a;
+      --accent: #f5b042;
+      --light: #f5f8fc;
+      --text: #2b3b4d;
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #eef3f8;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    h1, h2, h3 {
+      color: var(--primary);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      font-size: 1.15rem;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.25s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .primary:hover {
+      background: #e6a03a;
+    }
+
+    .secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 25px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* ===== FEATURES LIST ===== */
+    .features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      margin-bottom: 12px;
+    }
+
+    /* ===== PRICE ===== */
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ===== TABLE ===== */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      background: white;
+      border-collapse: collapse;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 16px 20px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-caption {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 12px 0;
+      color: var(--primary);
+    }
+
+    /* ===== HIGHLIGHT ===== */
+    .highlight {
+      background: white;
+      border-left: 6px solid var(--accent);
+      padding: 25px;
+      border-radius: 18px;
+      margin-top: 20px;
+    }
+
+    .highlight a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .highlight a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta h2 {
+      color: white;
+    }
+
+    .cta p {
+      max-width: 550px;
+      margin: 0 auto 20px;
+      opacity: 0.9;
+    }
+
+    .cta .btn {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .cta .btn:hover {
+      background: #e6a03a;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact .card p {
+      margin: 8px 0;
+    }
+
+    #contact .card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    #contact .card a:hover {
+      color: var(--accent);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 30px;
+      background: #eef3f8;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .contact-links .max-link {
+      background: #2d2d2d;
+      color: white;
+    }
+
+    .contact-links .max-link:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: white;
+      padding: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .hero {
+        padding: 60px 0;
+      }
+
+      .logo {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      th, td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="logo">
+        English <span>To</span> Perfection
+      </div>
+      <h1>Курсы английского языка</h1>
+      <p>
+        Индивидуальные и групповые занятия для детей, подростков и взрослых.
+        Онлайн и офлайн в Рязани.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="#contact">
+          🎉 Бесплатный пробный урок
+        </a>
+        <a class="btn secondary" href="details.html">
+          📖 Полная информация
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section>
+    <div class="container">
+      <h2>Почему выбирают нас</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🎯 Индивидуальный подход</h3>
+          <p>Для каждого ученика составляется персональная программа обучения.</p>
+        </div>
+        <div class="card">
+          <h3>👥 Маленькие группы</h3>
+          <p>Больше разговорной практики и внимания каждому ученику.</p>
+        </div>
+        <div class="card">
+          <h3>📈 Реальный прогресс</h3>
+          <p>Регулярное тестирование, обратная связь и отслеживание результатов.</p>
+        </div>
+        <div class="card">
+          <h3>🎓 Сертификаты</h3>
+          <p>После успешного завершения уровня вы получаете сертификат ETP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMATS ===== -->
+  <section>
+    <div class="container">
+      <h2>Форматы обучения</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>👤 Индивидуально</h3>
+          <p>Максимальное внимание преподавателя. Программа полностью под вас.</p>
+        </div>
+        <div class="card">
+          <h3>👥 В паре</h3>
+          <p>Учитесь вместе с другом или коллегой. Экономия и практика.</p>
+        </div>
+        <div class="card">
+          <h3>👨‍👩‍👧 Мини-группа</h3>
+          <p>Общение, практика и комфортная атмосфера. До 5 человек.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICES ===== -->
+  <section>
+    <div class="container">
+      <h2>Стоимость</h2>
+
+      <!-- Individual Tariffs -->
+      <div class="table-caption">📘 Индивидуальные занятия</div>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Количество занятий</th>
+            <th>Стоимость</th>
+          </tr>
+          <tr>
+            <td>1 урок в неделю</td>
+            <td class="price">от 1 200 ₽ / урок</td>
+          </tr>
+          <tr>
+            <td>2 урока в неделю</td>
+            <td class="price">от 1 200 ₽ / урок</td>
+          </tr>
+          <tr>
+            <td>3–5 уроков в неделю</td>
+            <td class="price">от 1 000 ₽ / урок</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Two-Student Tariffs -->
+      <div class="table-caption" style="margin-top: 30px;">👥 Занятия для двоих студентов</div>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Количество занятий</th>
+            <th>Стоимость</th>
+          </tr>
+          <tr>
+            <td>1 урок в неделю</td>
+            <td class="price">от 2 000 ₽ / урок</td>
+          </tr>
+          <tr>
+            <td>2 урока в неделю</td>
+            <td class="price">от 2 000 ₽ / урок</td>
+          </tr>
+          <tr>
+            <td>3 урока в неделю</td>
+            <td class="price">от 1 800 ₽ / урок</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="highlight">
+        <p>
+          <strong>👥 Групповые занятия:</strong> Стоимость зависит от количества
+          участников в группе. Актуальное количество студентов сообщается регулярно.
+        </p>
+        <br />
+        <a href="details.html">👉 Смотреть полный список тарифов</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT'S INCLUDED ===== -->
+  <section>
+    <div class="container">
+      <h2>Что входит</h2>
+      <div class="grid">
+        <div class="card">
+          <ul class="features">
+            <li>✅ Бесплатное определение уровня</li>
+            <li>✅ Индивидуальный план обучения</li>
+            <li>✅ Домашние задания с проверкой</li>
+            <li>✅ Учебные материалы</li>
+            <li>✅ Регулярные отчёты о прогрессе</li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul class="features">
+            <li>🎁 Скидки за рекомендации (до 30%)</li>
+            <li>👨‍👩‍👧 Семейные скидки (+5%)</li>
+            <li>🏆 Конкурсы и призы</li>
+            <li>🎭 Speaking Club</li>
+            <li>📚 Reading Club</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RULES SHORT ===== -->
+  <section>
+    <div class="container">
+      <h2>Коротко о правилах</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🔄 Перенос</h3>
+          <p>
+            <strong>За 5+ дней</strong> — бесплатно.<br />
+            <strong>Менее 5 дней</strong> — перенос с комиссией 30%.
+          </p>
+        </div>
+        <div class="card">
+          <h3>👨‍🏫 Отмена преподавателем</h3>
+          <p>
+            Мы переносим урок <strong>в удобное для вас время</strong>.
+            Никаких штрафов.
+          </p>
+        </div>
+        <div class="card">
+          <h3>💰 Возврат</h3>
+          <p>
+            Неиспользованные занятия возвращаются <strong>пропорционально</strong>
+            (минус 5% административных расходов).
+          </p>
+        </div>
+      </div>
+      <br />
+      <p style="text-align: center">
+        <a href="details.html" style="color: var(--primary); font-weight: 600;">
+          Подробнее о правилах →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <div class="container">
+      <h2>🎉 Бесплатный пробный урок</h2>
+      <p>
+        Познакомьтесь с преподавателем, определите свой уровень
+        и получите персональный план обучения.
+      </p>
+      <a class="btn" href="#contact">Записаться</a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <h2>Контакты</h2>
+      <div class="grid">
+        <div class="card">
+          <p>📞 <a href="tel:+79521212943">+7 952 121 2943</a></p>
+          <p>📧 <a href="mailto:englishtoperfection24@gmail.com">englishtoperfection24@gmail.com</a></p>
+          <p>📍 Рязань, Садовая 24а</p>
+        </div>
+        <div class="card">
+          <p><strong>📱 Свяжитесь с нами</strong></p>
+          <div class="contact-links">
+            <a href="https://t.me/+79521212943" target="_blank">💬 Telegram</a>
+            <a href="https://vk.ru/club226065699" target="_blank">📱 VK</a>
+            <a href="https://wa.me/79521212943" target="_blank">💚 WhatsApp</a>
+            <a href="https://t.me/+79521212943" target="_blank" class="max-link">⚡ MAX</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2026 English To Perfection — Все права защищены.</p>
+  </footer>
+
+</body>
+</html>
