@@ -284,7 +284,6 @@
       color: var(--primary);
     }
 
-    /* ===== TESTS SECTION ===== */
     .test-card {
       background: white;
       padding: 20px 22px;
@@ -334,7 +333,6 @@
       border-top: 1px solid #eee;
     }
 
-    /* ===== MODAL ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -395,6 +393,31 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ===== PHILOSOPHY SECTION ON INDEX ===== */
+    .philosophy-block {
+      background: #f5fafe;
+      border-left: 6px solid #f5b042;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin: 1rem 0;
+    }
+    .philosophy-block p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+    .philosophy-grid .item {
+      background: white;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
     @media (max-width: 700px) {
       .hero { padding: 60px 0; }
       .logo { font-size: 2rem; }
@@ -404,6 +427,8 @@
       .btn { width: 100%; text-align: center; }
       th, td { padding: 10px 12px; font-size: 0.85rem; }
       .modal { padding: 1.8rem; }
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .philosophy-block { padding: 1.2rem; }
     }
   </style>
 </head>
@@ -437,7 +462,7 @@
       </p>
       <div class="buttons">
         <a class="btn primary" onclick="openModal(event)">🎉 Бесплатный пробный урок</a>
-        <a class="btn secondary" href="details.html">📖 Полная информация</a>
+        <a class="btn secondary" href="details.html">📖 Все про занятия</a>
       </div>
     </div>
   </section>
@@ -463,6 +488,37 @@
           <h3>🎓 Сертификаты</h3>
           <p>После успешного завершения уровня вы получаете сертификат ETP.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHILOSOPHY (MEDIUM VERSION) ===== -->
+  <section>
+    <div class="container">
+      <h2>🤝 Наша философия</h2>
+      <div class="philosophy-block">
+        <p>
+          <strong>Моя цель — чтобы вы говорили на английском как на родном языке.</strong>
+          Это значит гораздо больше, чем просто выучить правила и слова. 
+          Настоящий результат достигается <strong>через общение</strong>.
+        </p>
+        <div class="philosophy-grid">
+          <div class="item">
+            ✅ <strong>Оплата:</strong> месяц вперёд, но <strong>исключения</strong> возможны — просто предупредите заранее
+          </div>
+          <div class="item">
+            ✅ <strong>Честность:</strong> предупредите о возможных отменах — строим доверие
+          </div>
+          <div class="item">
+            ✅ <strong>Ожидания:</strong> прогресс ученика + вовлечённость преподавателя = <strong>win-win</strong>
+          </div>
+          <div class="item">
+            ✅ <strong>Цель:</strong> свободный, уверенный английский без барьеров
+          </div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 1rem;">
+          <strong>🤝 Мы — партнёры.</strong> Только вместе мы можем достичь настоящего результата.
+        </p>
       </div>
     </div>
   </section>
@@ -631,42 +687,36 @@
       </div>
 
       <div class="grid">
-        <!-- 1. Young Learners -->
         <div class="test-card" style="border-left-color: #4a76a8;">
           <h4>🧒 Young Learners</h4>
           <p>Cambridge YLE Sample Tests. Для детей 7–12 лет. ~30 мин.</p>
           <a href="test-young-learners.html" class="btn-sm btn-blue">Перейти к тесту →</a>
         </div>
 
-        <!-- 2. Teens -->
         <div class="test-card" style="border-left-color: #8a8a3a;">
           <h4>🧑‍🎓 Teens</h4>
           <p>Cambridge Sample Exams for Schools. Для подростков 12–17 лет. ~30 мин.</p>
           <a href="test-teens.html" class="btn-sm btn-gold">Перейти к тесту →</a>
         </div>
 
-        <!-- 3. Adults -->
         <div class="test-card" style="border-left-color: #5a8a3a;">
           <h4>👤 Adults</h4>
           <p>Cambridge Test Your English – General English. ~25 мин.</p>
           <a href="test-adults.html" class="btn-sm btn-green">Перейти к тесту →</a>
         </div>
 
-        <!-- 4. IELTS -->
         <div class="test-card" style="border-left-color: #e87a3a;">
           <h4>🎓 IELTS Preparation</h4>
           <p>British Council IELTS Practice (via EF SET). 50 мин.</p>
           <a href="test-ielts.html" class="btn-sm btn-orange">Перейти к тесту →</a>
         </div>
 
-        <!-- 5. Cambridge Exams -->
         <div class="test-card" style="border-left-color: #a85a3a;">
           <h4>📜 Cambridge Exams</h4>
           <p>Official Sample Papers (via EF SET). 50 мин.</p>
           <a href="test-cambridge.html" class="btn-sm btn-brown">Перейти к тесту →</a>
         </div>
 
-        <!-- 6. Russian OGE/EGE -->
         <div class="test-card" style="border-left-color: #6a3a3a;">
           <h4>🇷🇺 Russian OGE/EGE</h4>
           <p>Official FIPI Demo Papers (via EF SET). 15 мин.</p>
