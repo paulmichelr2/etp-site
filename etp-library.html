@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETP Library – Complete Catalog</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body { background: #f0f4f9; padding: 2rem 1rem; display: flex; justify-content: center; }
+    .container { max-width: 1400px; width: 100%; background: white; border-radius: 32px; padding: 2.5rem 2.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+    .logo { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+    .logo-icon { font-size: 2.4rem; background: #0b2b4a; color: #f5b042; width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.8rem; }
+    .logo-text { font-size: 2.6rem; font-weight: 700; color: #0b2b4a; letter-spacing: -0.5px; }
+    .logo-text span { color: #f5b042; }
+    .subhead { font-size: 1.1rem; color: #3a5a7a; margin: 0.3rem 0 1.8rem 0; border-left: 5px solid #f5b042; padding-left: 1rem; }
+    .badge { background: #eef6ff; color: #0b2b4a; padding: 0.3rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-bottom: 0.5rem; }
+
+    h1 { font-size: 2.2rem; color: #0b2b4a; margin-top: 0.5rem; }
+    h2 { font-size: 1.8rem; color: #0b2b4a; margin: 2.5rem 0 1rem 0; border-bottom: 3px solid #f5b042; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.4rem; color: #0b2b4a; margin: 1.8rem 0 0.8rem 0; }
+    h4 { font-size: 1.1rem; color: #1a3a5a; margin: 1rem 0 0.3rem 0; }
+
+    .series-tag { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.7rem; font-weight: 700; margin-right: 0.3rem; }
+    .tag-oxford { background: #d4edda; color: #155724; }
+    .tag-cambridge { background: #cce5ff; color: #004085; }
+    .tag-pearson { background: #fef9e7; color: #856404; }
+    .tag-macmillan { background: #f8d7da; color: #721c24; }
+    .tag-dolphin { background: #e2e3e5; color: #383d41; }
+    .tag-dominoes { background: #d1ecf1; color: #0c5460; }
+    .tag-ladybird { background: #e8d5b7; color: #5a3a1a; }
+    .tag-seuss { background: #d4edda; color: #155724; }
+    .tag-harry { background: #f8d7da; color: #721c24; }
+    .tag-classic { background: #cce5ff; color: #004085; }
+    .tag-must { background: #f5b042; color: #0b2b4a; font-weight: 700; }
+
+    .level-section { background: #f9fbfd; border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; border-left: 6px solid #f5b042; }
+    .level-section .level-header { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+    .level-section .level-badge { background: #0b2b4a; color: white; padding: 0.3rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; }
+    .level-section .cefr-badge { background: #eef6ff; color: #0b2b4a; padding: 0.3rem 1.2rem; border-radius: 30px; font-weight: 600; font-size: 0.85rem; }
+    .level-section .headwords-badge { background: #fef9e7; color: #856404; padding: 0.3rem 1.2rem; border-radius: 30px; font-weight: 600; font-size: 0.85rem; }
+
+    .series-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 0.5rem 0; }
+    .series-block { background: white; border-radius: 12px; padding: 1rem 1.2rem; border: 1px solid #e2e8f0; }
+    .series-block h4 { margin-top: 0; }
+    .series-block ul { list-style: none; padding: 0.3rem 0 0 0.5rem; }
+    .series-block li { padding: 0.2rem 0; border-bottom: 1px solid #f5f5f5; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .series-block li:last-child { border-bottom: none; }
+    .series-block .book-count { font-size: 0.7rem; color: #6a7e96; background: #f0f4f9; padding: 0.1rem 0.6rem; border-radius: 30px; }
+
+    .must-read-list { background: #fef9e7; border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1rem; border: 2px solid #f5b042; }
+    .must-read-list h4 { margin-top: 0; color: #0b2b4a; }
+    .must-read-list li { padding: 0.3rem 0; border-bottom: 1px solid #f0e5c8; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .must-read-list li:last-child { border-bottom: none; }
+    .must-read-list .why { font-size: 0.8rem; color: #6a7e96; font-style: italic; }
+
+    .read-discover-highlight { background: #e8f4f8; border-radius: 8px; padding: 0.5rem 0.8rem; margin-top: 0.5rem; border-left: 4px solid #2a7a8a; }
+    .read-discover-highlight li { border-bottom: none !important; }
+
+    .seuss-list { background: #f0f6fe; border-radius: 8px; padding: 0.5rem 0.8rem; margin-top: 0.5rem; border-left: 4px solid #4a76a8; }
+    .seuss-list li { border-bottom: none !important; }
+
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 18px; border: 1px solid #e2e8f0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 700px; }
+    th { background: #0b2b4a; color: white; padding: 0.9rem 0.6rem; text-align: left; font-weight: 600; white-space: nowrap; }
+    td { padding: 0.6rem 0.6rem; border-bottom: 1px solid #edf2f7; }
+    tr:hover { background: #f8fafc; }
+
+    .btn-back { background: #f5b042; color: #0b2b4a; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1.5rem; }
+    .btn-back:hover { background: #e6a03a; transform: scale(1.02); }
+
+    .footer { margin-top: 2.5rem; font-size: 0.85rem; color: #6a7e96; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0; justify-content: center; }
+    .legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.85rem; }
+
+    .must-badge { background: #f5b042; color: #0b2b4a; padding: 0.1rem 0.6rem; border-radius: 30px; font-size: 0.65rem; font-weight: 700; }
+
+    @media (max-width: 900px) {
+      .series-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .logo-text { font-size: 1.8rem; }
+      .logo-icon { width: 48px; height: 48px; font-size: 1.4rem; }
+      .container { padding: 1.2rem 1rem; }
+      .series-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.6rem; }
+      .level-section { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-icon">ETP</div>
+    <div class="logo-text">English <span>To</span> Perfection</div>
+  </div>
+  <span class="badge">📚 ETP Library – Complete Catalog</span>
+  <div class="subhead">Graded Readers • Classics • Popular Fiction • Animated Books • Comic Books</div>
+
+  <h1>📖 ETP Library</h1>
+  <p style="color:#3a5a7a; max-width:900px; margin:0.5rem 0 1.5rem 0;">
+    Полный каталог библиотеки English To Perfection. <strong>12+ серий</strong>, <strong>300+ книг</strong>.
+    <span style="background:#f5b042; color:#0b2b4a; padding:0.1rem 0.6rem; border-radius:30px; font-weight:700; font-size:0.8rem; margin-left:0.5rem;">
+      ⭐ MUST-READ отмечены
+    </span>
+  </p>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <span class="legend-item"><span class="series-tag tag-oxford">●</span> Oxford</span>
+    <span class="legend-item"><span class="series-tag tag-cambridge">●</span> Cambridge</span>
+    <span class="legend-item"><span class="series-tag tag-pearson">●</span> Pearson</span>
+    <span class="legend-item"><span class="series-tag tag-macmillan">●</span> Macmillan</span>
+    <span class="legend-item"><span class="series-tag tag-dolphin">●</span> Dolphin</span>
+    <span class="legend-item"><span class="series-tag tag-dominoes">●</span> Dominoes</span>
+    <span class="legend-item"><span class="series-tag tag-ladybird">●</span> Ladybird</span>
+    <span class="legend-item"><span class="series-tag tag-seuss">●</span> Dr. Seuss</span>
+    <span class="legend-item"><span class="series-tag tag-harry">●</span> Harry Potter</span>
+    <span class="legend-item"><span class="series-tag tag-classic">●</span> Classics</span>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 1: PRE-A1 - A1 -->
+  <div class="level-section" style="border-left-color: #4a76a8;">
+    <div class="level-header">
+      <span class="level-badge">🟢 Level 1</span>
+      <span class="cefr-badge">CEFR: Pre-A1 – A1</span>
+      <span class="headwords-badge">Headwords: 250 – 600</span>
+      <span class="headwords-badge">IELTS™: 1.0 – 2.0</span>
+    </div>
+
+    <div class="series-grid">
+      <!-- MUST-READ: Oxford Read and Discover Level 1 -->
+      <div class="series-block" style="border: 2px solid #f5b042; background: #fef9e7;">
+        <h4>⭐ MUST-READ <span class="series-tag tag-oxford">Oxford</span> Read and Discover Level 1</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>Art</li>
+            <li>At the Beach</li>
+            <li>Eyes</li>
+            <li>Fruit</li>
+            <li>In the Sky</li>
+            <li>Schools</li>
+            <li>Wheels</li>
+            <li>Wild Cats</li>
+            <li>Young Animals</li>
+            <li>Inglese (various topics)</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Dr. Seuss – All Books</h4>
+        <div class="seuss-list">
+          <ul>
+            <li>And to Think That I Saw It on Mulberry Street</li>
+            <li>The 500 Hats of Bartholomew Cubbins</li>
+            <li>The Cat in the Hat</li>
+            <li>The Cat in the Hat Comes Back</li>
+            <li>Fox in Socks</li>
+            <li>Green Eggs and Ham</li>
+            <li>Hop on Pop</li>
+            <li>Horton Hatches the Egg</li>
+            <li>Horton Hears a Who!</li>
+            <li>How the Grinch Stole Christmas!</li>
+            <li>If I Ran the Circus</li>
+            <li>If I Ran the Zoo</li>
+            <li>The Lorax</li>
+            <li>Oh, the Places You'll Go!</li>
+            <li>Oh, the Thinks You Can Think!</li>
+            <li>On Beyond Zebra!</li>
+            <li>One Fish Two Fish Red Fish Blue Fish</li>
+            <li>The Sneetches and Other Stories</li>
+            <li>The Cat's Quizzer</li>
+            <li>Daisy-Head Mayzie</li>
+            <li>Did I Ever Tell You How Lucky You Are?</li>
+            <li>Dr. Seuss's ABC</li>
+            <li>The Foot Book</li>
+            <li>Great Day for Up!</li>
+            <li>Happy Birthday to You!</li>
+            <li>I Can Read with My Eyes Shut!</li>
+            <li>I Had Trouble in Getting to Solla Sollew</li>
+            <li>I Wish That I Had Duck Feet</li>
+            <li>Marvin K. Mooney Will You Please Go Now!</li>
+            <li>McElligot's Pool</li>
+            <li>Mr. Brown Can Moo! Can You?</li>
+            <li>My Book About Me</li>
+            <li>The Shape of Me and Other Stuff</li>
+            <li>There's a Wocket in My Pocket!</li>
+            <li>Thidwick the Big-Hearted Moose</li>
+            <li>Wacky Wednesday</li>
+            <li>Yertle the Turtle and Other Stories</li>
+            <li>You're Only Old Once!</li>
+            <li>The Butter Battle Book</li>
+            <li>Scrambled Eggs Super!</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Oxford Bookworms Starter</h4>
+        <ul>
+          <li>A Connecticut Yankee in King Arthur's Court</li>
+          <li>Drive into Danger</li>
+          <li>Escape</li>
+          <li>The Fifteenth Character</li>
+          <li>Girl on a Motorcycle</li>
+          <li>Give Us the Money</li>
+          <li>King Arthur</li>
+          <li>Mystery in London</li>
+          <li>New York Cafe</li>
+          <li>Oranges in the Snow</li>
+          <li>Orca</li>
+          <li>The Ransom of Red Chief</li>
+          <li>Robin Hood</li>
+          <li>Sally's Phone</li>
+          <li>Star Reporter</li>
+          <li>Starman</li>
+          <li>Survive!</li>
+          <li>Taxi of Terror</li>
+          <li>Vampire Killer</li>
+          <li>The White Stones</li>
+        </ul>
+      </div>
+
+      <!-- Oxford Bookworms Stage 1 -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-oxford">Oxford</span> Bookworms Stage 1</h4>
+        <ul>
+          <li>The Adventures of Tom Sawyer</li>
+          <li>Aladdin and the Enchanted Lamp</li>
+          <li>Christmas in Prague</li>
+          <li>The Coldest Place on Earth</li>
+          <li>The Elephant Man</li>
+          <li>Goodbye, Mr Hollywood</li>
+          <li>A Little Princess</li>
+          <li>The Lottery Winner</li>
+          <li>Love or Money?</li>
+          <li>Mary Queen of Scots</li>
+          <li>The Monkey's Paw</li>
+          <li>Mutiny on the Bounty</li>
+          <li>The Omega Files</li>
+          <li>One-Way Ticket</li>
+          <li>The Phantom of the Opera</li>
+          <li>Pocahontas</li>
+          <li>The President's Murderer</li>
+          <li>Remember Miranda</li>
+          <li>Sherlock Holmes and the Duke's Son</li>
+          <li>Under the Moon</li>
+          <li>The Witches of Pendle</li>
+          <li>The Withered Arm</li>
+          <li>The Wizard of Oz</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Read and Imagine Starter–Level 1</h4>
+        <ul>
+          <li>Various titles with recurring characters</li>
+        </ul>
+      </div>
+
+      <!-- Cambridge & Dolphin -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-cambridge">Cambridge</span> Readers Starter &amp; Level 1</h4>
+        <ul>
+          <li>Big Hair Day</li>
+          <li>Book Boy</li>
+          <li>The Black Pearls</li>
+          <li>Why?</li>
+          <li>John Doe</li>
+          <li>Three Tomorrows</li>
+          <li>Ten Long Years</li>
+          <li>The Caribbean File</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-dolphin">Dolphin</span> Readers Starter</h4>
+        <ul>
+          <li>Baby Animals</li>
+          <li>A Game of Shapes</li>
+          <li>Meet Molly</li>
+          <li>In the Ocean</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-pearson">Pearson</span> EasyStart</h4>
+        <ul>
+          <li>20 titles available</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-macmillan">Macmillan</span> Readers Starter</h4>
+        <ul>
+          <li>Various beginner titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-ladybird">Ladybird</span> Readers Level 1–2</h4>
+        <ul>
+          <li>Traditional tales, modern stories, Peppa Pig, Peter Rabbit</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-dominoes">Dominoes</span> Quick Starter</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Classic Tales Level 1</h4>
+        <ul>
+          <li>Traditional stories retold</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MUST-READ -->
+    <div class="must-read-list">
+      <h4>⭐ MUST-READ for Level 1</h4>
+      <ul>
+        <li><strong>Oxford Read and Discover Level 1 – All 10 books</strong> <span class="why">— Non-fiction with beautiful photos, simple sentences; builds subject-specific vocabulary and cross-curricular knowledge; excellent for CLIL</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Cat in the Hat</strong> (Dr. Seuss) <span class="why">— Rhyme and repetition build phonological awareness; pseudowords spark word consciousness</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Green Eggs and Ham</strong> (Dr. Seuss) <span class="why">— Extremely repetitive, builds confidence; only 50 unique words</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Elephant Man</strong> (Oxford Bookworms) <span class="why">— Simple vocabulary, repetitive structures, emotional story</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Baby Animals</strong> (Dolphin Readers) <span class="why">— Beautiful photos, simple sentences; perfect for beginners</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Lorax</strong> (Dr. Seuss) <span class="why">— Rhyming patterns act as mnemonic devices; introduces environmental vocabulary</span> <span class="must-badge">MUST</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 2: A1 - A2 -->
+  <div class="level-section" style="border-left-color: #5a8a3a;">
+    <div class="level-header">
+      <span class="level-badge">🔵 Level 2</span>
+      <span class="cefr-badge">CEFR: A1 – A2</span>
+      <span class="headwords-badge">Headwords: 600 – 1,000</span>
+      <span class="headwords-badge">IELTS™: 2.0 – 3.0</span>
+    </div>
+
+    <div class="series-grid">
+      <!-- MUST-READ: Oxford Read and Discover Level 2 & 3 -->
+      <div class="series-block" style="border: 2px solid #f5b042; background: #fef9e7;">
+        <h4>⭐ MUST-READ <span class="series-tag tag-oxford">Oxford</span> Read and Discover Level 2</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>Camouflage</li>
+            <li>Cities</li>
+            <li>Earth</li>
+            <li>Farms</li>
+            <li>Jobs</li>
+            <li>Plastic</li>
+            <li>Sunny and Rainy</li>
+            <li>Your Body</li>
+            <li>In the Mountains</li>
+            <li>Transport</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">⭐ Oxford Read and Discover Level 3</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>Amazing Minibeasts</li>
+            <li>Animals in the Air</li>
+            <li>Festivals Around the World</li>
+            <li>Free Time Around the World</li>
+            <li>How We Make Products</li>
+            <li>Life in Rainforests</li>
+            <li>Sound and Music</li>
+            <li>Super Structures</li>
+            <li>Wonderful Water</li>
+            <li>Your Five Senses</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Dr. Seuss – All Books (continued)</h4>
+        <div class="seuss-list">
+          <ul>
+            <li>All 40 Dr. Seuss books listed above are suitable for this level</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Oxford Bookworms Stage 2</h4>
+        <ul>
+          <li>Agatha Christie, Woman of Mystery</li>
+          <li>Alice's Adventures in Wonderland</li>
+          <li>Anne of Green Gables</li>
+          <li>The Canterville Ghost</li>
+          <li>The Children of the New Forest</li>
+          <li>Dead Man's Island</li>
+          <li>Dead in the Freezer</li>
+          <li>The Death of Karen Silkwood</li>
+          <li>Dracula</li>
+          <li>Ear-rings from Frankfurt</li>
+          <li>Five Children and It</li>
+          <li>Grace Darling</li>
+          <li>Henry VIII and His Six Wives</li>
+          <li>Huckleberry Finn</li>
+          <li>The Jungle Book</li>
+          <li>Love Among the Haystacks</li>
+          <li>The Love of a King</li>
+        </ul>
+      </div>
+
+      <!-- Cambridge Level 2 & 3 -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 2</h4>
+        <ul>
+          <li>Bad Company</li>
+          <li>Dead Cold</li>
+          <li>The New Zealand File</li>
+          <li>Superbird</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 3</h4>
+        <ul>
+          <li>No Place to Hide</li>
+          <li>Not Above the Law</li>
+          <li>Strong Medicine</li>
+          <li>Wild Country</li>
+          <li>The Ironing Man</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Read and Imagine Level 2–3</h4>
+        <ul>
+          <li>Various fiction titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-pearson">Pearson</span> English Readers Level 1–2</h4>
+        <ul>
+          <li>20 titles available per level</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-macmillan">Macmillan</span> Readers Level 1–2</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-dolphin">Dolphin</span> Readers Level 2–3</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-ladybird">Ladybird</span> Readers Level 2–3</h4>
+        <ul>
+          <li>Traditional tales, modern stories</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-dominoes">Dominoes</span> Starter</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Classic Tales Level 2</h4>
+        <ul>
+          <li>Traditional stories retold</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MUST-READ -->
+    <div class="must-read-list">
+      <h4>⭐ MUST-READ for Level 2</h4>
+      <ul>
+        <li><strong>Oxford Read and Discover Level 2 – All 10 books</strong> <span class="why">— Builds subject-specific vocabulary; cross-curricular topics (Earth, Cities, Your Body, etc.)</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Oxford Read and Discover Level 3 – All 10 books</strong> <span class="why">— Expands vocabulary through varied topics; natural repetition of key structures</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Dr. Seuss – All 40 books</strong> <span class="why">— Rhyme, repetition, and word play build phonological awareness and vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Alice's Adventures in Wonderland</strong> (Oxford Bookworms) <span class="why">— Playful language, "curiouser and curiouser" – builds word consciousness</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Jungle Book</strong> (Oxford Bookworms) <span class="why">— Classic story, rich vocabulary, varied sentence structures</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Anne of Green Gables</strong> (Oxford Bookworms) <span class="why">— Beautiful descriptive language, character-driven narrative, rich vocabulary</span> <span class="must-badge">MUST</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 3: A2 - B1 -->
+  <div class="level-section" style="border-left-color: #f5b042;">
+    <div class="level-header">
+      <span class="level-badge">🟡 Level 3</span>
+      <span class="cefr-badge">CEFR: A2 – B1</span>
+      <span class="headwords-badge">Headwords: 1,000 – 1,800</span>
+      <span class="headwords-badge">IELTS™: 3.0 – 4.5</span>
+    </div>
+
+    <div class="series-grid">
+      <!-- MUST-READ: Oxford Read and Discover Level 4 & 5 -->
+      <div class="series-block" style="border: 2px solid #f5b042; background: #fef9e7;">
+        <h4>⭐ MUST-READ <span class="series-tag tag-oxford">Oxford</span> Read and Discover Level 4</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>All About Desert Life</li>
+            <li>All About Ocean Life</li>
+            <li>All About Plants</li>
+            <li>Animals in Art</li>
+            <li>How to Stay Healthy</li>
+            <li>Incredible Earth</li>
+            <li>Machines Then and Now</li>
+            <li>Why We Recycle</li>
+            <li>Wonders of the Past</li>
+            <li>World of Sports</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">⭐ Oxford Read and Discover Level 5</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>All About Islands</li>
+            <li>Animal Life Cycles</li>
+            <li>Exploring Our World</li>
+            <li>Great Migrations</li>
+            <li>Homes Around the World</li>
+            <li>Medicine Then and Now</li>
+            <li>Our World in Art</li>
+            <li>Transportation Then and Now</li>
+            <li>Wild Weather</li>
+            <li>World of Technology</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Oxford Bookworms Stage 3 & 4</h4>
+        <ul>
+          <li>Frankenstein</li>
+          <li>The Call of the Wild</li>
+          <li>The Picture of Dorian Gray</li>
+          <li>The 39 Steps</li>
+          <li>Three Men in a Boat</li>
+          <li>Silas Marner</li>
+          <li>Washington Square</li>
+          <li>The Moonspinners</li>
+          <li>Reflex</li>
+          <li>Lord Jim</li>
+          <li>The Songs of Distant Earth</li>
+        </ul>
+      </div>
+
+      <!-- Cambridge Level 4 & 5 -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 4</h4>
+        <ul>
+          <li>Berlin Express</li>
+          <li>Love in the Lakes</li>
+          <li>In the House</li>
+          <li>Nothing but the Truth</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 5</h4>
+        <ul>
+          <li>Forget to Remember</li>
+          <li>Death in the Dojo</li>
+        </ul>
+      </div>
+
+      <!-- Harry Potter & Authentic Bridge -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-harry">Harry Potter</span> Authentic (Bridge)</h4>
+        <ul>
+          <li>Harry Potter and the Philosopher's Stone</li>
+          <li>Harry Potter and the Chamber of Secrets</li>
+          <li><span style="font-size:0.8rem; color:#6a7e96;">Lexile 880-950 • ATOS 5.5-6.8</span></li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Read and Imagine Level 4–5</h4>
+        <ul>
+          <li>Various fiction titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-pearson">Pearson</span> English Readers Level 3–4</h4>
+        <ul>
+          <li>20 titles available (Level 3)</li>
+          <li>18 titles available (Level 4)</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-macmillan">Macmillan</span> Intermediate</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-dominoes">Dominoes</span> Level 1–2</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MUST-READ -->
+    <div class="must-read-list">
+      <h4>⭐ MUST-READ for Level 3</h4>
+      <ul>
+        <li><strong>Oxford Read and Discover Level 4 – All 10 books</strong> <span class="why">— Expands lexical resource through diverse topics; natural repetition of academic vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Oxford Read and Discover Level 5 – All 10 books</strong> <span class="why">— Prepares for upper-intermediate reading; builds knowledge of complex structures through science and history</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The 39 Steps</strong> (Oxford Bookworms) <span class="why">— Thrilling plot, varied vocabulary, multiple exposures to key vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Frankenstein</strong> (Oxford Bookworms) <span class="why">— Rich descriptive language, complex sentence structures, gothic vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Picture of Dorian Gray</strong> (Oxford Bookworms) <span class="why">— Aesthetic vocabulary, moral themes, internalisation of sophisticated lexical choices</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Harry Potter and the Philosopher's Stone</strong> <span class="why">— Natural language, dialogue, contextual vocabulary acquisition</span> <span class="must-badge">MUST</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 4: B1 - B2 -->
+  <div class="level-section" style="border-left-color: #e87a3a;">
+    <div class="level-header">
+      <span class="level-badge">🟠 Level 4</span>
+      <span class="cefr-badge">CEFR: B1 – B2</span>
+      <span class="headwords-badge">Headwords: 1,800 – 3,000</span>
+      <span class="headwords-badge">IELTS™: 4.5 – 6.0</span>
+    </div>
+
+    <div class="series-grid">
+      <!-- MUST-READ: Oxford Read and Discover Level 6 -->
+      <div class="series-block" style="border: 2px solid #f5b042; background: #fef9e7;">
+        <h4>⭐ MUST-READ <span class="series-tag tag-oxford">Oxford</span> Read and Discover Level 6</h4>
+        <div class="read-discover-highlight">
+          <ul>
+            <li>All About Space</li>
+            <li>Caring for Our Planet</li>
+            <li>Cells and Microbes</li>
+            <li>Clothes Then and Now</li>
+            <li>Earth Then and Now</li>
+            <li>Food Around the World</li>
+            <li>Helping Around the World</li>
+            <li>Incredible Energy</li>
+            <li>Wonders of the World</li>
+            <li>Your Amazing Body</li>
+          </ul>
+        </div>
+        <h4 style="margin-top:0.8rem;">Oxford Bookworms Stage 5 & 6</h4>
+        <ul>
+          <li>Do Androids Dream of Electric Sheep?</li>
+          <li>The Riddle of the Sands</li>
+          <li>This Rough Magic</li>
+          <li>Brat Farrar</li>
+          <li>Deadlock</li>
+          <li>The Garden Party and Other Stories</li>
+          <li>Ghost Stories</li>
+          <li>Wuthering Heights</li>
+          <li>The Dead of Jericho</li>
+          <li>Night Without End</li>
+          <li>The Enemy</li>
+          <li>The Woman in White</li>
+          <li>Jane Eyre</li>
+        </ul>
+      </div>
+
+      <!-- Cambridge Level 5 & 6 -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 5</h4>
+        <ul>
+          <li>Forget to Remember</li>
+          <li>Parallel</li>
+          <li>Death in the Dojo</li>
+          <li>When Summer Comes</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-cambridge">Cambridge</span> English Readers Level 6</h4>
+        <ul>
+          <li>Nelson's Dream</li>
+          <li>The Best of Times?</li>
+          <li>Trumpet Voluntary</li>
+        </ul>
+      </div>
+
+      <!-- Harry Potter & Classics -->
+      <div class="series-block">
+        <h4><span class="series-tag tag-harry">Harry Potter</span> Authentic</h4>
+        <ul>
+          <li>Harry Potter and the Prisoner of Azkaban</li>
+          <li>Harry Potter and the Goblet of Fire</li>
+          <li><span style="font-size:0.8rem; color:#6a7e96;">Lexile 880-950 • ATOS 6.8</span></li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-classic">Classics</span> (Mid-Frequency)</h4>
+        <ul>
+          <li>The Great Gatsby</li>
+          <li>A Christmas Carol</li>
+          <li>The Strange Case of Dr Jekyll and Mr Hyde</li>
+          <li>The Time Machine</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-oxford">Oxford</span> Read and Imagine Level 6</h4>
+        <ul>
+          <li>Various fiction titles</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-pearson">Pearson</span> Readers Level 5–6</h4>
+        <ul>
+          <li>20 titles available (Level 5)</li>
+          <li>10 titles available (Level 6)</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;"><span class="series-tag tag-macmillan">Macmillan</span> Upper Intermediate</h4>
+        <ul>
+          <li>Various titles</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MUST-READ -->
+    <div class="must-read-list">
+      <h4>⭐ MUST-READ for Level 4</h4>
+      <ul>
+        <li><strong>Oxford Read and Discover Level 6 – All 10 books</strong> <span class="why">— Advanced non-fiction with complex academic vocabulary; prepares for university-level reading</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Great Gatsby</strong> (Classic) <span class="why">— Rich vocabulary, American idioms, descriptive language</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Jane Eyre</strong> (Oxford Bookworms) <span class="why">— Poetic descriptive style, gothic vocabulary, complex sentence structures</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Wuthering Heights</strong> (Oxford Bookworms) <span class="why">— Dramatic language, passion and revenge vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Harry Potter and the Goblet of Fire</strong> <span class="why">— Extended dialogue, descriptive passages, sophisticated vocabulary</span> <span class="must-badge">MUST</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 5: BRIDGE TO AUTHENTIC -->
+  <div class="level-section" style="border-left-color: #6a3a3a; background: #faf5f0;">
+    <div class="level-header">
+      <span class="level-badge">🔴 Level 5</span>
+      <span class="cefr-badge">CEFR: B1 – C1</span>
+      <span class="headwords-badge">📖 Bridge to Authentic Texts</span>
+    </div>
+
+    <div class="series-grid">
+      <!-- Diary of a Wimpy Kid -->
+      <div class="series-block">
+        <h4>📚 Diary of a Wimpy Kid (Jeff Kinney)</h4>
+        <ul>
+          <li>Diary of a Wimpy Kid</li>
+          <li>Rodrick Rules</li>
+          <li>The Last Straw</li>
+          <li>Dog Days</li>
+          <li>The Ugly Truth</li>
+          <li>Cabin Fever</li>
+          <li>The Third Wheel</li>
+          <li>Hard Luck</li>
+          <li>The Long Haul</li>
+          <li>Old School</li>
+          <li>Double Down</li>
+          <li>The Getaway</li>
+          <li><span style="font-size:0.8rem; color:#6a7e96;">ATOS 5.2-5.6 • B1-B2</span></li>
+        </ul>
+      </div>
+
+      <!-- Harry Potter Complete -->
+      <div class="series-block">
+        <h4>⚡ Harry Potter Series (J.K. Rowling)</h4>
+        <ul>
+          <li>Harry Potter and the Philosopher's Stone</li>
+          <li>Harry Potter and the Chamber of Secrets</li>
+          <li>Harry Potter and the Prisoner of Azkaban</li>
+          <li>Harry Potter and the Goblet of Fire</li>
+          <li>Harry Potter and the Order of the Phoenix</li>
+          <li>Harry Potter and the Half-Blood Prince</li>
+          <li>Harry Potter and the Deathly Hallows</li>
+          <li><span style="font-size:0.8rem; color:#6a7e96;">Lexile 880-980 • ATOS 6.8-7.2</span></li>
+        </ul>
+      </div>
+
+      <!-- Authentic Literature -->
+      <div class="series-block">
+        <h4>📖 Authentic Literature (Mid-Frequency)</h4>
+        <ul>
+          <li>The Adventures of Sherlock Holmes</li>
+          <li>A Christmas Carol</li>
+          <li>A Modest Proposal</li>
+          <li>Alice's Adventures in Wonderland (original)</li>
+          <li>Jane Eyre (original)</li>
+          <li>Metamorphosis</li>
+          <li>More William</li>
+          <li>The Garden Party and Other Stories</li>
+          <li>The Great Gatsby (original)</li>
+          <li>The Strange Case of Dr Jekyll and Mr Hyde</li>
+          <li>The Time Machine</li>
+          <li>Wuthering Heights (original)</li>
+        </ul>
+        <h4 style="margin-top:0.8rem;">📖 Non-Fiction</h4>
+        <ul>
+          <li>The Burning Bed</li>
+          <li>Free Culture</li>
+          <li>Glimpses of an Unfamiliar Japan</li>
+          <li>Narrative of the Life of Frederick Douglass</li>
+          <li>The Art of War</li>
+          <li>The Prince</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MUST-READ -->
+    <div class="must-read-list">
+      <h4>⭐ MUST-READ for Level 5</h4>
+      <ul>
+        <li><strong>The Adventures of Sherlock Holmes</strong> (Authentic) <span class="why">— Logical reasoning vocabulary, scientific language, complex plot structures</span> <span class="must-badge">MUST</span></li>
+        <li><strong>The Great Gatsby</strong> (Authentic) <span class="why">— Rich American English, literary vocabulary, cultural references</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Diary of a Wimpy Kid</strong> <span class="why">— Authentic spoken English, slang, idioms; excellent bridge to real-world communication</span> <span class="must-badge">MUST</span></li>
+        <li><strong>A Christmas Carol</strong> (Authentic) <span class="why">— Victorian English, moral themes, rich descriptive vocabulary</span> <span class="must-badge">MUST</span></li>
+        <li><strong>Harry Potter and the Philosopher's Stone</strong> <span class="why">— Natural language, dialogue, contextual vocabulary acquisition</span> <span class="must-badge">MUST</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SUMMARY TABLE: Read and Discover -->
+  <h2>📊 Oxford Read and Discover – Must-Read by Level</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>CEFR</th>
+          <th>Books</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>🟢 Level 1</strong></td><td>Pre-A1 – A1</td><td>All 10 books</td><td>Basic vocabulary, simple sentences, cross-curricular topics</td></tr>
+        <tr><td><strong>🔵 Level 2</strong></td><td>A1 – A2</td><td>All 10 books</td><td>Subject-specific vocabulary, natural repetition, CLIL</td></tr>
+        <tr><td><strong>🟡 Level 3</strong></td><td>A2 – B1</td><td>All 10 books</td><td>Expanded vocabulary, varied topics, fluency building</td></tr>
+        <tr><td><strong>🟠 Level 4</strong></td><td>B1 – B2</td><td>All 10 books</td><td>Academic vocabulary, complex structures, preparation for authentic reading</td></tr>
+        <tr><td><strong>🔴 Level 5</strong></td><td>B1 – B2</td><td>All 10 books</td><td>Advanced non-fiction, cross-curricular content, deeper lexical resource</td></tr>
+        <tr><td><strong>🟠 Level 6</strong></td><td>B2 – C1</td><td>All 10 books</td><td>Complex academic vocabulary, sophisticated sentence structures</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SUMMARY TABLE: Dr. Seuss -->
+  <h2>📊 Dr. Seuss – All 40 Books</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>And to Think That I Saw It on Mulberry Street</td><td>A1-A2</td></tr>
+        <tr><td>2</td><td>The 500 Hats of Bartholomew Cubbins</td><td>A1-A2</td></tr>
+        <tr><td>3</td><td>The Cat in the Hat</td><td>A1</td></tr>
+        <tr><td>4</td><td>The Cat in the Hat Comes Back</td><td>A1-A2</td></tr>
+        <tr><td>5</td><td>Fox in Socks</td><td>A1-A2</td></tr>
+        <tr><td>6</td><td>Green Eggs and Ham</td><td>A1</td></tr>
+        <tr><td>7</td><td>Hop on Pop</td><td>A1</td></tr>
+        <tr><td>8</td><td>Horton Hatches the Egg</td><td>A1-A2</td></tr>
+        <tr><td>9</td><td>Horton Hears a Who!</td><td>A1-A2</td></tr>
+        <tr><td>10</td><td>How the Grinch Stole Christmas!</td><td>A1-A2</td></tr>
+        <tr><td>11</td><td>If I Ran the Circus</td><td>A1-A2</td></tr>
+        <tr><td>12</td><td>If I Ran the Zoo</td><td>A1-A2</td></tr>
+        <tr><td>13</td><td>The Lorax</td><td>A1-A2</td></tr>
+        <tr><td>14</td><td>Oh, the Places You'll Go!</td><td>A2-B1</td></tr>
+        <tr><td>15</td><td>Oh, the Thinks You Can Think!</td><td>A1-A2</td></tr>
+        <tr><td>16</td><td>On Beyond Zebra!</td><td>A1-A2</td></tr>
+        <tr><td>17</td><td>One Fish Two Fish Red Fish Blue Fish</td><td>A1</td></tr>
+        <tr><td>18</td><td>The Sneetches and Other Stories</td><td>A1-A2</td></tr>
+        <tr><td>19</td><td>The Cat's Quizzer</td><td>A1-A2</td></tr>
+        <tr><td>20</td><td>Daisy-Head Mayzie</td><td>A1-A2</td></tr>
+        <tr><td>21</td><td>Did I Ever Tell You How Lucky You Are?</td><td>A1-A2</td></tr>
+        <tr><td>22</td><td>Dr. Seuss's ABC</td><td>A1</td></tr>
+        <tr><td>23</td><td>The Foot Book</td><td>A1</td></tr>
+        <tr><td>24</td><td>Great Day for Up!</td><td>A1</td></tr>
+        <tr><td>25</td><td>Happy Birthday to You!</td><td>A1-A2</td></tr>
+        <tr><td>26</td><td>I Can Read with My Eyes Shut!</td><td>A1-A2</td></tr>
+        <tr><td>27</td><td>I Had Trouble in Getting to Solla Sollew</td><td>A1-A2</td></tr>
+        <tr><td>28</td><td>I Wish That I Had Duck Feet</td><td>A1-A2</td></tr>
+        <tr><td>29</td><td>Marvin K. Mooney Will You Please Go Now!</td><td>A1-A2</td></tr>
+        <tr><td>30</td><td>McElligot's Pool</td><td>A1-A2</td></tr>
+        <tr><td>31</td><td>Mr. Brown Can Moo! Can You?</td><td>A1</td></tr>
+        <tr><td>32</td><td>My Book About Me</td><td>A1-A2</td></tr>
+        <tr><td>33</td><td>The Shape of Me and Other Stuff</td><td>A1</td></tr>
+        <tr><td>34</td><td>There's a Wocket in My Pocket!</td><td>A1</td></tr>
+        <tr><td>35</td><td>Thidwick the Big-Hearted Moose</td><td>A1-A2</td></tr>
+        <tr><td>36</td><td>Wacky Wednesday</td><td>A1</td></tr>
+        <tr><td>37</td><td>Yertle the Turtle and Other Stories</td><td>A1-A2</td></tr>
+        <tr><td>38</td><td>You're Only Old Once!</td><td>A2-B1</td></tr>
+        <tr><td>39</td><td>The Butter Battle Book</td><td>A1-A2</td></tr>
+        <tr><td>40</td><td>Scrambled Eggs Super!</td><td>A1-A2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BACK BUTTON -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="index.html" class="btn-back">⬅️ Вернуться на главную</a>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 English To Perfection — ETP Library</p>
+    <p style="margin-top:0.3rem;">12+ series • 300+ books • Levels Pre-A1 to C1 • Dr. Seuss: All 40 books included • Oxford Read and Discover: Must-Read for every level</p>
+  </div>
+
+</div>
+</body>
+</html>

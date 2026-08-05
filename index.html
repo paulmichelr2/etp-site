@@ -324,6 +324,38 @@
     }
     .access-note a { color: #0b2b4a; font-weight: 600; }
 
+    .library-feature {
+      background: #f5fafe;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px dashed #4a76a8;
+      margin: 1rem 0;
+    }
+    .library-feature .book-count {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0b2b4a;
+    }
+    .library-feature .book-label {
+      font-size: 0.9rem;
+      color: #6a7e96;
+    }
+    .library-feature .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    .library-feature .tags span {
+      background: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      border: 1px solid #e2e8f0;
+    }
+
     footer {
       background: white;
       padding: 40px;
@@ -393,31 +425,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== PHILOSOPHY SECTION ON INDEX ===== */
-    .philosophy-block {
-      background: #f5fafe;
-      border-left: 6px solid #f5b042;
-      border-radius: 16px;
-      padding: 1.8rem 2rem;
-      margin: 1rem 0;
-    }
-    .philosophy-block p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-    }
-    .philosophy-grid .item {
-      background: white;
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-    }
-
     @media (max-width: 700px) {
       .hero { padding: 60px 0; }
       .logo { font-size: 2rem; }
@@ -427,8 +434,7 @@
       .btn { width: 100%; text-align: center; }
       th, td { padding: 10px 12px; font-size: 0.85rem; }
       .modal { padding: 1.8rem; }
-      .philosophy-grid { grid-template-columns: 1fr; }
-      .philosophy-block { padding: 1.2rem; }
+      .library-feature .book-count { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -463,6 +469,7 @@
       <div class="buttons">
         <a class="btn primary" onclick="openModal(event)">🎉 Бесплатный пробный урок</a>
         <a class="btn secondary" href="details.html">📖 Все про занятия</a>
+        <a class="btn secondary" href="etp-library.html">📚 ETP Library</a>
       </div>
     </div>
   </section>
@@ -488,33 +495,37 @@
           <h3>🎓 Сертификаты</h3>
           <p>После успешного завершения уровня вы получаете сертификат ETP.</p>
         </div>
+        <div class="card">
+          <h3>📚 ETP Library</h3>
+          <p>Собственная библиотека из 300+ книг на любой уровень. <a href="etp-library.html" style="color: #f5b042; font-weight: 600;">Подробнее →</a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== PHILOSOPHY (MEDIUM VERSION - UPDATED) ===== -->
+  <!-- ===== PHILOSOPHY ===== -->
   <section>
     <div class="container">
       <h2>🤝 Наша философия</h2>
-      <div class="philosophy-block">
-        <p>
+      <div style="background: #f5fafe; border-left: 6px solid #f5b042; border-radius: 16px; padding: 1.8rem 2rem; margin: 1rem 0;">
+        <p style="font-size: 1.1rem; line-height: 1.8;">
           <strong>Если вы сдаёте экзамен в ETP с удовлетворительными результатами, вы сможете сдать любые экзамены где угодно.</strong>
           В ETP мы строим <strong>характер, незаменимый для жизни</strong>. Сдача экзаменов — это <strong>побочный продукт</strong> вашей компетенции, а не главная цель.
         </p>
         <p style="margin-top: 0.8rem;">
           Мы строим характер <strong>день за днём</strong>, используя <strong>разные активности</strong>, чтобы сделать обучение <strong>весёлым, увлекательным, интерактивным и пробуждающим интерес</strong>.
         </p>
-        <div class="philosophy-grid">
-          <div class="item">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.2rem;">
+          <div style="background: white; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #e2e8f0;">
             ✅ <strong>Оплата:</strong> месяц вперёд, но <strong>исключения</strong> возможны — просто предупредите заранее
           </div>
-          <div class="item">
+          <div style="background: white; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #e2e8f0;">
             ✅ <strong>Честность:</strong> предупредите о возможных отменах — строим доверие
           </div>
-          <div class="item">
+          <div style="background: white; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #e2e8f0;">
             ✅ <strong>Ожидания:</strong> прогресс ученика + вовлечённость преподавателя = <strong>win-win</strong>
           </div>
-          <div class="item">
+          <div style="background: white; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid #e2e8f0;">
             ✅ <strong>Цель:</strong> свободный, уверенный английский без барьеров
           </div>
         </div>
@@ -724,6 +735,54 @@
           <p>Official FIPI Demo Papers (via EF SET). 15 мин.</p>
           <a href="test-russian-exams.html" class="btn-sm btn-red">Перейти к тесту →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIBRARY SECTION (NEW) ===== -->
+  <section>
+    <div class="container">
+      <h2>📚 ETP Library – Книги для чтения</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 1.5rem; color: #3a5a7a;">
+        Более <strong>300 книг</strong> на любой уровень: от начинающих до продвинутых.
+        Graded Readers, классика, <strong>Dr. Seuss</strong> (все 40 книг), <strong>Harry Potter</strong> и многое другое.
+      </p>
+
+      <div class="library-feature">
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;">
+          <div>
+            <div class="book-count">300+</div>
+            <div class="book-label">всего книг</div>
+          </div>
+          <div>
+            <div class="book-count">40</div>
+            <div class="book-label">Dr. Seuss</div>
+          </div>
+          <div>
+            <div class="book-count">7</div>
+            <div class="book-label">Harry Potter</div>
+          </div>
+          <div>
+            <div class="book-count">6</div>
+            <div class="book-label">уровней</div>
+          </div>
+        </div>
+        <div class="tags">
+          <span>🟢 Pre-A1 – A1</span>
+          <span>🔵 A1 – A2</span>
+          <span>🟡 A2 – B1</span>
+          <span>🟠 B1 – B2</span>
+          <span>🔴 B1 – C1</span>
+        </div>
+        <div style="margin-top: 0.8rem;">
+          <a href="etp-library.html" class="btn primary">📖 Открыть каталог</a>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1rem;">
+        <a href="etp-library.html" style="color: #0b2b4a; font-weight: 600; text-decoration: underline;">
+          ⭐ Смотреть Must-Read книги для каждого уровня →
+        </a>
       </div>
     </div>
   </section>
