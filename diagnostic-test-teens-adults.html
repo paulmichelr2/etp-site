@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostic Test – Teens & Adults – English To Perfection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body { background: #f0f4f9; padding: 2rem 1rem; display: flex; justify-content: center; }
+    .container { max-width: 950px; width: 100%; background: white; border-radius: 32px; padding: 2.5rem 2.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+    /* ===== STICKY TIMER ===== */
+    .timer-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0b2b4a;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0 0 16px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      margin: -2.5rem -2.5rem 2rem -2.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .timer-sticky .timer-label { font-size: 0.9rem; opacity: 0.8; }
+    .timer-sticky .timer-time { font-size: 2rem; font-weight: 700; color: #f5b042; font-variant-numeric: tabular-nums; }
+    .timer-sticky .timer-time.warning { color: #ff6b6b; animation: pulse 1s infinite; }
+    .timer-sticky .student-name { font-size: 0.9rem; opacity: 0.8; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ===== MAIN STYLES ===== */
+    .logo { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+    .logo-icon { font-size: 2.4rem; background: #0b2b4a; color: #f5b042; width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.8rem; }
+    .logo-text { font-size: 2.6rem; font-weight: 700; color: #0b2b4a; letter-spacing: -0.5px; }
+    .logo-text span { color: #f5b042; }
+    .subhead { font-size: 1.1rem; color: #3a5a7a; margin: 0.3rem 0 1.8rem 0; border-left: 5px solid #f5b042; padding-left: 1rem; }
+    .badge { background: #eef6ff; color: #0b2b4a; padding: 0.3rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-bottom: 0.5rem; }
+
+    h1 { font-size: 2rem; color: #0b2b4a; margin-bottom: 0.5rem; }
+
+    .question-block { background: #f9fbfd; border-radius: 16px; padding: 1.5rem; margin: 1rem 0; border-left: 4px solid #f5b042; }
+    .question-block h3 { font-size: 1.1rem; color: #0b2b4a; margin-bottom: 0.8rem; }
+    .question-block .options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .question-block .options label { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.8rem; background: white; border-radius: 8px; border: 1px solid #e2e8f0; cursor: pointer; transition: 0.2s; }
+    .question-block .options label:hover { background: #eef6ff; border-color: #f5b042; }
+    .question-block .options input[type="radio"] { accent-color: #f5b042; width: 18px; height: 18px; }
+    .question-block .options .correct { background: #d4edda; border-color: #28a745; }
+    .question-block .options .incorrect { background: #f8d7da; border-color: #dc3545; }
+    .question-block.disabled { opacity: 0.6; pointer-events: none; }
+
+    .btn { padding: 14px 28px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.25s; display: inline-block; border: none; cursor: pointer; }
+    .primary { background: #f5b042; color: #0b2b4a; }
+    .primary:hover { background: #e6a03a; transform: translateY(-2px); }
+    .secondary { background: #0b2b4a; color: white; }
+    .secondary:hover { background: #1a3a5a; transform: translateY(-2px); }
+    .success { background: #28a745; color: white; }
+    .success:hover { background: #1e7e34; transform: translateY(-2px); }
+    .danger { background: #dc3545; color: white; }
+    .danger:hover { background: #c82333; transform: translateY(-2px); }
+
+    .result-box { background: #0b2b4a; color: white; border-radius: 24px; padding: 2.5rem; margin-top: 2rem; display: none; }
+    .result-box h2 { color: white; font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .result-box .level { font-size: 3rem; font-weight: 700; color: #f5b042; margin: 0.5rem 0; }
+    .result-box .score { font-size: 1.4rem; opacity: 0.9; }
+
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .result-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 1.2rem; border-left: 4px solid #f5b042; }
+    .result-card h4 { color: #f5b042; margin-bottom: 0.5rem; font-size: 1rem; }
+    .result-card ul { list-style: none; padding: 0; }
+    .result-card li { padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .result-card li:last-child { border: none; }
+    .result-card .weakness-tag { background: #d32f2f; color: white; padding: 0.1rem 0.6rem; border-radius: 30px; font-size: 0.7rem; font-weight: 600; }
+    .result-card .strength-tag { background: #28a745; color: white; padding: 0.1rem 0.6rem; border-radius: 30px; font-size: 0.7rem; font-weight: 600; }
+
+    .details-list { margin-top: 1.5rem; max-height: 300px; overflow-y: auto; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; }
+    .details-list li { padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); list-style: none; font-size: 0.85rem; }
+
+    .hidden { display: none; }
+    .text-center { text-align: center; margin: 1.5rem 0; }
+
+    .max-send-section { margin-top: 1.5rem; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+    .max-send-section h4 { color: #f5b042; margin-bottom: 0.5rem; }
+    .max-send-section textarea { width: 100%; padding: 0.8rem; border-radius: 12px; border: none; background: rgba(255,255,255,0.1); color: white; font-family: monospace; font-size: 0.85rem; resize: vertical; min-height: 120px; }
+    .max-send-section textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .max-send-section .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.8rem; }
+
+    .admin-section { margin-top: 2rem; padding: 1.5rem; background: #f9fbfd; border-radius: 16px; border: 2px solid #e2e8f0; }
+    .admin-section h4 { color: #0b2b4a; margin-bottom: 0.5rem; }
+    .admin-section input { padding: 0.6rem 1rem; border-radius: 12px; border: 1px solid #d0d7e2; font-size: 0.9rem; width: 100%; max-width: 300px; margin-right: 0.5rem; }
+    .admin-section .btn { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
+
+    .footer { margin-top: 2rem; font-size: 0.85rem; color: #6a7e96; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; }
+
+    .status-msg { padding: 0.8rem 1.2rem; border-radius: 12px; margin: 1rem 0; display: none; }
+    .status-msg.success { display: block; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .status-msg.error { display: block; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    .status-msg.info { display: block; background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+    @media (max-width: 700px) {
+      .logo-text { font-size: 1.8rem; }
+      .logo-icon { width: 48px; height: 48px; font-size: 1.4rem; }
+      .container { padding: 1.2rem 1rem; }
+      .question-block .options { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; }
+      .timer-sticky {
+        margin: -1.2rem -1rem 1.5rem -1rem;
+        padding: 0.6rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        border-radius: 0;
+      }
+      .timer-sticky .timer-time { font-size: 1.5rem; }
+      .timer-sticky .student-name { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="mainContainer">
+
+  <!-- ===== STICKY TIMER ===== -->
+  <div id="stickyTimer" class="timer-sticky hidden">
+    <span class="timer-label">⏱️ Time Remaining</span>
+    <span class="timer-time" id="stickyTimeDisplay">60:00</span>
+    <span class="student-name" id="stickyStudentName"></span>
+  </div>
+
+  <!-- ===== LOGO & HEADER ===== -->
+  <div id="headerContent">
+    <div class="logo">
+      <div class="logo-icon">ETP</div>
+      <div class="logo-text">English <span>To</span> Perfection</div>
+    </div>
+    <span class="badge">📝 Diagnostic Test – Teens & Adults</span>
+    <div class="subhead">Choose the correct option for each question. You have <strong>60 minutes</strong>.</div>
+  </div>
+
+  <!-- STATUS MESSAGES -->
+  <div id="statusMsg" class="status-msg"></div>
+
+  <!-- TIMER (Original, hidden when test starts) -->
+  <div id="timerDisplay" class="timer">⏱️ 60:00</div>
+
+  <!-- NAME INPUT -->
+  <div id="nameSection" style="margin: 1.5rem 0;">
+    <label style="font-weight:600; display:block; margin-bottom:0.5rem;">Enter your name:</label>
+    <input type="text" id="studentName" placeholder="Your full name" style="padding:0.8rem 1rem; border-radius:12px; border:1px solid #d0d7e2; width:100%; max-width:400px; font-size:1rem;" />
+    <button class="btn primary" onclick="startTest()" style="margin-top:0.8rem;">Start Test</button>
+  </div>
+
+  <!-- TEST QUESTIONS -->
+  <div id="testContainer" class="hidden">
+    <div id="questionsContainer"></div>
+    <div class="text-center">
+      <button class="btn secondary" onclick="submitTest()">Submit Test</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultBox" class="result-box">
+    <h2>🎉 Test Complete!</h2>
+    <div id="resultName" style="font-size:1.1rem; opacity:0.8;"></div>
+    <div class="level" id="resultLevel"></div>
+    <div class="score" id="resultScore"></div>
+
+    <!-- WEAKNESSES & STRENGTHS -->
+    <div class="result-grid">
+      <div class="result-card" style="border-left-color: #d32f2f;">
+        <h4>🔴 Areas for Improvement</h4>
+        <ul id="weaknessesList"></ul>
+      </div>
+      <div class="result-card" style="border-left-color: #28a745;">
+        <h4>🟢 Strengths</h4>
+        <ul id="strengthsList"></ul>
+      </div>
+    </div>
+
+    <!-- SEND TO MAX -->
+    <div class="max-send-section">
+      <h4>📲 Send Results to MAX</h4>
+      <p style="font-size:0.85rem; opacity:0.7; margin-bottom:0.5rem;">Copy this message and send it to your teacher on MAX:</p>
+      <textarea id="maxMessage" readonly></textarea>
+      <div class="btn-group">
+        <button class="btn success" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+        <a href="#" id="maxLink" class="btn primary" style="background: #25d366; color: white;" target="_blank">💬 Open MAX</a>
+        <button class="btn primary" onclick="sendToMax()">📲 Send via MAX</button>
+      </div>
+      <div id="sendStatus" style="margin-top:0.5rem; font-size:0.85rem; color:rgba(255,255,255,0.7);"></div>
+    </div>
+
+    <!-- DETAILED BREAKDOWN -->
+    <div style="margin-top:1.5rem;">
+      <h4 style="color:#f5b042;">📋 Detailed Question Breakdown</h4>
+      <div class="details-list">
+        <ul id="resultDetails"></ul>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;">
+      <a href="index.html" class="btn primary" style="color:#0b2b4a;">⬅️ Back to Home</a>
+      <button onclick="window.print()" class="btn primary" style="color:#0b2b4a;">🖨️ Print Results</button>
+    </div>
+  </div>
+
+  <!-- ADMIN OVERRIDE SECTION -->
+  <div class="admin-section">
+    <h4>🔑 Admin Override</h4>
+    <p style="font-size:0.85rem; color:#6a7e96; margin-bottom:0.5rem;">Reset access for a student so they can retake the test.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+      <input type="text" id="adminName" placeholder="Enter student's name" />
+      <button class="btn danger" onclick="resetStudentAccess()">Reset Access</button>
+      <button class="btn secondary" onclick="viewSubmittedStudents()">📋 View All Students</button>
+    </div>
+    <div id="adminStatus" style="margin-top:0.5rem; font-size:0.85rem; color:#6a7e96;"></div>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 English To Perfection — All rights reserved.</p>
+    <p style="margin-top:0.3rem;">100 questions • 60 minutes • CEFR level assessment</p>
+  </div>
+
+</div>
+
+<script>
+  // ===== STORAGE KEYS =====
+  const STORAGE_KEY = 'etp_diagnostic_test_submissions';
+
+  // ===== ALL 100 QUESTIONS WITH CATEGORIES =====
+  const questions = [
+    { q: "You play ______ in teams of five.", options: ["swimming", "basketball", "gymnastics"], answer: 1, category: "Vocabulary" },
+    { q: "You can't go ______ without a bike.", options: ["running", "sailing", "cycling"], answer: 2, category: "Vocabulary" },
+    { q: "They ______ go surfing because they don't like swimming.", options: ["always", "never", "often"], answer: 1, category: "Grammar" },
+    { q: "I ______ clean my teeth after breakfast and then I go to work.", options: ["usually", "never", "sometimes"], answer: 0, category: "Grammar" },
+    { q: "______ is something sweet you can eat with pancakes.", options: ["Honey", "Avocado", "Cereal"], answer: 0, category: "Vocabulary" },
+    { q: "In my house, we often ______ fruit for breakfast.", options: ["are having", "having", "have"], answer: 2, category: "Grammar" },
+    { q: "We ______ early at the weekend.", options: ["not get up", "doesn't get up", "don't get up"], answer: 2, category: "Grammar" },
+    { q: "When a band ______ they visit different cities every two or three days.", options: ["gives a concert", "goes on tour", "becomes famous"], answer: 1, category: "Vocabulary" },
+    { q: "James plays some great jazz tunes on the ______.", options: ["saxophone", "concert", "soul"], answer: 0, category: "Vocabulary" },
+    { q: "Amy loves ______ to the theatre or the cinema.", options: ["go", "going", "is going"], answer: 1, category: "Grammar" },
+    { q: "My father ______ driving to work in the car.", options: ["quite like", "quite likes", "quite liking"], answer: 1, category: "Grammar" },
+    { q: "My birthday was ______. Dad took me skydiving and I loved it!", options: ["horrible", "fine", "awesome"], answer: 2, category: "Vocabulary" },
+    { q: "We're so ______ you could come tonight. There are lots of people we want you to meet.", options: ["upset", "angry", "glad"], answer: 2, category: "Vocabulary" },
+    { q: "They ______ hungry after the game, but they were very thirsty.", options: ["was", "weren't", "wasn't"], answer: 1, category: "Grammar" },
+    { q: "We went to see the new show last night, but it was ______. Don't go!", options: ["terrible", "brilliant", "perfect"], answer: 0, category: "Vocabulary" },
+    { q: "Rick Riordan ______ his first book in 1997.", options: ["crossed", "received", "published"], answer: 2, category: "Vocabulary" },
+    { q: "What do you think of the new ______ in front of the National Museum?", options: ["palace", "castle", "statue"], answer: 2, category: "Vocabulary" },
+    { q: "They ______ London in the summer of 2017.", options: ["visited", "travelled", "looked"], answer: 0, category: "Grammar" },
+    { q: "They ______ the tree, they just played in the garden.", options: ["not climb", "not climbed", "didn't climb"], answer: 2, category: "Grammar" },
+    { q: "When you have a job you ______ money.", options: ["earn", "get", "record"], answer: 0, category: "Vocabulary" },
+    { q: "A group of people who work in a business are known as the ______.", options: ["staff", "boss", "customers"], answer: 0, category: "Vocabulary" },
+    { q: "My dad makes cars. He's a ______.", options: ["manager", "factory worker", "mechanic"], answer: 1, category: "Vocabulary" },
+    { q: "My aunt works as a ______ in the hospital.", options: ["nurse", "pilot", "sports coach"], answer: 0, category: "Vocabulary" },
+    { q: "We cooked fish, but we ______ meat.", options: ["not cook", "cook didn't", "didn't cook"], answer: 2, category: "Grammar" },
+    { q: "How ______ to work last week?", options: ["do you travel", "did you travel", "do you travel"], answer: 1, category: "Grammar" },
+    { q: "The class didn't start at 8.30 last week, it ______ at 9 o'clock.", options: ["start", "starting", "started"], answer: 2, category: "Grammar" },
+    { q: "Go ______ when you go to Barcelona. There are lots of interesting places to see.", options: ["lie on the beach", "camping", "sightseeing"], answer: 2, category: "Vocabulary" },
+    { q: "The tour stops in five different countries, so don't forget your ______.", options: ["passport", "guidebook", "tour guide"], answer: 0, category: "Vocabulary" },
+    { q: "Did you ______ to Milan last weekend?", options: ["went", "go", "going"], answer: 1, category: "Grammar" },
+    { q: "We ______ our bikes to the beach yesterday.", options: ["rode", "ridden", "ride"], answer: 0, category: "Grammar" },
+    { q: "What ______ for breakfast this morning?", options: ["they eat", "did they ate", "did they eat"], answer: 2, category: "Grammar" },
+    { q: "I keep my T-shirts and jumpers in the ______ in my room.", options: ["bookshelf", "cushion", "chest of drawers"], answer: 2, category: "Vocabulary" },
+    { q: "Do you want to read? Put the ______ on so you can see.", options: ["lamp", "mirror", "blanket"], answer: 0, category: "Vocabulary" },
+    { q: "I write a ______ about my adventures and post something online every week.", options: ["diary", "song", "blog"], answer: 2, category: "Vocabulary" },
+    { q: "My uncle ______ computer games all the time. He doesn't like watching TV.", options: ["does", "watches", "plays"], answer: 2, category: "Vocabulary" },
+    { q: "Have you got ______ to drink?", options: ["anything", "nothing", "any"], answer: 0, category: "Grammar" },
+    { q: "I met ______ at the park yesterday who plays the drums in a band.", options: ["anyone", "no-one", "someone"], answer: 2, category: "Grammar" },
+    { q: "When you go for a job interview, it's a good idea to wear ______.", options: ["a suit", "boots", "gloves"], answer: 0, category: "Vocabulary" },
+    { q: "My cousin rides a motorcycle and wears a really awesome black ______ jacket.", options: ["wool", "cotton", "leather"], answer: 2, category: "Vocabulary" },
+    { q: "This isn't my parents' car. ______ car is red.", options: ["Theirs", "Their", "There"], answer: 1, category: "Grammar" },
+    { q: "I really like your scarf. Is it ______?", options: ["your", "yours", "you"], answer: 1, category: "Grammar" },
+    { q: "This meal was delicious. Let me pay the ______.", options: ["cash", "price", "bill"], answer: 2, category: "Vocabulary" },
+    { q: "I can give you your money back if you still have the ______.", options: ["discount", "record", "receipt"], answer: 2, category: "Vocabulary" },
+    { q: "Can you give me ______ paper please? I want to give you my phone number.", options: ["a bit of", "a few", "a lot of"], answer: 0, category: "Grammar" },
+    { q: "I bought ______ new purse yesterday.", options: ["an", "a", "any"], answer: 1, category: "Grammar" },
+    { q: "Have you got ______ cash you can lend me?", options: ["some", "a", "any"], answer: 2, category: "Grammar" },
+    { q: "Joe Lee is well-known ______ his blog about food.", options: ["of", "for", "with"], answer: 1, category: "Grammar" },
+    { q: "In China a lot of meat dishes come with and vegetables.", options: ["noodles", "fish", "cheese"], answer: 0, category: "Vocabulary" },
+    { q: "You need eggs to make ______ and you can add cheese or mushrooms.", options: ["chilli", "an omelette", "seafood"], answer: 1, category: "Vocabulary" },
+    { q: "Why don't you have ______ with your burger? It's healthier than chips.", options: ["salad", "fried onions", "curry"], answer: 0, category: "Vocabulary" },
+    { q: "My cousin is ______ my brother. He's two and my brother is ten.", options: ["younger", "as young as", "younger than"], answer: 2, category: "Grammar" },
+    { q: "Do you think chicken legs are ______ chicken curry?", options: ["tasty", "as tasty as", "tastier"], answer: 1, category: "Grammar" },
+    { q: "The red T-shirt is ______ the orange one.", options: ["expensive", "expensive than", "more expensive than"], answer: 2, category: "Grammar" },
+    { q: "This computer has a large ______, so it can hold a lot of information.", options: ["download", "website", "memory"], answer: 2, category: "Vocabulary" },
+    { q: "I sometimes ______ the internet to find cheap clothes and shoes.", options: ["surf", "chat", "go"], answer: 0, category: "Vocabulary" },
+    { q: "I think Edinburgh is one of ______ cities in the world!", options: ["most beautiful", "the more beautiful", "the most beautiful"], answer: 2, category: "Grammar" },
+    { q: "This supermarket is ______ shop in my town.", options: ["as busy as", "the busiest", "busier"], answer: 1, category: "Grammar" },
+    { q: "You feel very hot. You've got a ______. You should go to the doctor.", options: ["ache", "pain", "temperature"], answer: 2, category: "Vocabulary" },
+    { q: "I don't know what's wrong but my toe really ______.", options: ["hurts", "sick", "pains"], answer: 0, category: "Vocabulary" },
+    { q: "What do you think I ______ wear to the party tonight?", options: ["do", "going to", "should"], answer: 2, category: "Grammar" },
+    { q: "After an accident like that, you ______ on your leg, you need to rest it.", options: ["should walk", "shouldn't walk", "shouldn't to walk"], answer: 1, category: "Grammar" },
+    { q: "It's a good idea to eat lots of fruit to ______ healthy.", options: ["do", "stay", "try"], answer: 1, category: "Vocabulary" },
+    { q: "______ are a place where children can have fun in the city.", options: ["Playgrounds", "Roundabouts", "Police stations"], answer: 0, category: "Vocabulary" },
+    { q: "Let's meet in the car ______ near the bridge.", options: ["station", "stop", "park"], answer: 2, category: "Vocabulary" },
+    { q: "To get to the bank you have to walk ______ the bridge.", options: ["across", "near", "opposite"], answer: 0, category: "Vocabulary" },
+    { q: "The River Seine goes ______ the city of Paris.", options: ["beside", "in front of", "through"], answer: 2, category: "Vocabulary" },
+    { q: "Bring your ______ with you because the weather doesn't look good.", options: ["guidebook", "raincoat", "tour guide"], answer: 1, category: "Vocabulary" },
+    { q: "It's very ______ today which makes it difficult to see anything.", options: ["icy", "sunny", "foggy"], answer: 2, category: "Vocabulary" },
+    { q: "It's a good day to fly a kite because it's ______.", options: ["cloudy", "windy", "snowy"], answer: 1, category: "Vocabulary" },
+    { q: "A: Was he looking for Sarah? B: Yes, he ______.", options: ["wasn't", "were", "was"], answer: 2, category: "Grammar" },
+    { q: "The top of that ______ is very high, around 3,600 metres I think.", options: ["mountain", "field", "island"], answer: 0, category: "Vocabulary" },
+    { q: "The swimming pool is only one metre ______, so I can touch the floor.", options: ["wide", "long", "deep"], answer: 2, category: "Vocabulary" },
+    { q: "What ______ on TV at eight o'clock last night?", options: ["was you watching", "were you watching", "did you watch"], answer: 1, category: "Grammar" },
+    { q: "During the presentation, my friends were talking a lot, but I ______.", options: ["was listening", "wasn't listening", "were listening"], answer: 1, category: "Grammar" },
+    { q: "My niece has a pet ______ which is grey and has long ears.", options: ["bear", "rabbit", "rat"], answer: 1, category: "Vocabulary" },
+    { q: "It's a bit dark in here. Please can you ______ the lamp?", options: ["turn off", "get on", "turn on"], answer: 2, category: "Vocabulary" },
+    { q: "I ______ a tree when I fell.", options: ["was climbing", "were climbing", "climbed"], answer: 0, category: "Grammar" },
+    { q: "We ______ my friends while we were shopping on Saturday.", options: ["not meet", "weren't meeting", "didn't meet"], answer: 2, category: "Grammar" },
+    { q: "Rob and Steve wanted to enter a singing ______ in December but I said they should practice more first.", options: ["audience", "interview", "competition"], answer: 2, category: "Vocabulary" },
+    { q: "I didn't see the big game last night, but I ______ it.", options: ["recorded", "streamed", "saw"], answer: 0, category: "Vocabulary" },
+    { q: "There are so many good ______ on the radio, it's difficult to decide what to listen to.", options: ["fans", "programmes", "stages"], answer: 1, category: "Vocabulary" },
+    { q: "What ______ next year?", options: ["are the studying", "he going to study", "is he going to study"], answer: 2, category: "Grammar" },
+    { q: "We ______ at the disco tonight because we're very tired.", options: ["aren't dancing going", "isn't going dance", "aren't going to dance"], answer: 2, category: "Grammar" },
+    { q: "What do you think of this ______ for the main story?", options: ["advertisement", "review", "headline"], answer: 2, category: "Vocabulary" },
+    { q: "I really enjoyed that film, ______ I want to see another one by the same director.", options: ["then", "as", "so"], answer: 2, category: "Grammar" },
+    { q: "______ I ride my bike, I try to cycle very fast so I can get fitter.", options: ["So", "When", "Because"], answer: 1, category: "Grammar" },
+    { q: "______ we meet outside the bank at 7 o'clock?", options: ["Shall", "Let's", "Why not"], answer: 0, category: "Grammar" },
+    { q: "______ ask Sandra if she wants to come?", options: ["Shall", "Why not", "Why don't"], answer: 2, category: "Grammar" },
+    { q: "We went round the science ______ last weekend.", options: ["amusement park", "museum", "aquarium"], answer: 1, category: "Vocabulary" },
+    { q: "I studied all weekend because I really don't want to ______ this test.", options: ["pass", "fail", "get"], answer: 1, category: "Vocabulary" },
+    { q: "What time do you ______ get on the train in the mornings?", options: ["have to", "has to", "have"], answer: 0, category: "Grammar" },
+    { q: "Grace ______ work today because it's a holiday.", options: ["not has to", "not have to", "doesn't have to"], answer: 2, category: "Grammar" },
+    { q: "My father's brother is my ______.", options: ["aunt", "uncle", "grandfather"], answer: 1, category: "Vocabulary" },
+    { q: "Your sister's son is your ______.", options: ["niece", "grandson", "nephew"], answer: 2, category: "Vocabulary" },
+    { q: "I will ______ take the train home later.", options: ["nearly", "quite", "probably"], answer: 2, category: "Vocabulary" },
+    { q: "You have to check your essay very ______ to make sure there are no mistakes.", options: ["with care", "carefully", "careful"], answer: 1, category: "Grammar" },
+    { q: "They won the game ______ with a score of 7–2.", options: ["easily", "easy", "well"], answer: 0, category: "Grammar" },
+    { q: "I am ______ close to my younger sister but I don't often see my older brother.", options: ["probably", "really", "nearly"], answer: 1, category: "Vocabulary" },
+    { q: "My grandparents ______ TV, they're asleep!", options: ["don't watch", "not watching", "aren't watching"], answer: 2, category: "Grammar" },
+    { q: "We were walking in the forest when we ______ three rabbits under a tree.", options: ["saw", "see", "were seeing"], answer: 0, category: "Grammar" }
+  ];
+
+  // ===== LEVEL MAPPING =====
+  function getLevel(score) {
+    if (score >= 90) return { level: "C2 (Proficiency)", color: "#2a5a8a", description: "Mastery of the language" };
+    if (score >= 80) return { level: "C1 (Advanced)", color: "#4a76a8", description: "Effective operational proficiency" };
+    if (score >= 65) return { level: "B2 (Upper-Intermediate)", color: "#5a8a3a", description: "Vantage level" };
+    if (score >= 50) return { level: "B1 (Intermediate)", color: "#8a8a3a", description: "Threshold level" };
+    if (score >= 35) return { level: "A2 (Elementary)", color: "#c87a3a", description: "Waystage level" };
+    if (score >= 20) return { level: "A1 (Beginner)", color: "#a85a3a", description: "Breakthrough level" };
+    return { level: "A0 (Starter)", color: "#6a3a3a", description: "Beginner with minimal knowledge" };
+  }
+
+  // ===== STORAGE FUNCTIONS =====
+  function getSubmissions() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch { return {}; }
+  }
+
+  function saveSubmission(name, data) {
+    const submissions = getSubmissions();
+    submissions[name.toLowerCase().trim()] = data;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+  }
+
+  function hasSubmitted(name) {
+    const submissions = getSubmissions();
+    return !!submissions[name.toLowerCase().trim()];
+  }
+
+  function getSubmission(name) {
+    const submissions = getSubmissions();
+    return submissions[name.toLowerCase().trim()] || null;
+  }
+
+  function resetStudent(name) {
+    const submissions = getSubmissions();
+    delete submissions[name.toLowerCase().trim()];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+  }
+
+  // ===== MAIN TEST LOGIC =====
+  let timerInterval;
+  let timeLeft = 60 * 60;
+  let testStarted = false;
+  let testCompleted = false;
+  let currentStudentName = '';
+
+  // ===== UPDATE STICKY TIMER =====
+  function updateStickyTimer() {
+    const stickyTimer = document.getElementById('stickyTimer');
+    const stickyTimeDisplay = document.getElementById('stickyTimeDisplay');
+    const stickyStudentName = document.getElementById('stickyStudentName');
+    
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    stickyTimeDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    
+    if (timeLeft <= 300) {
+      stickyTimeDisplay.classList.add('warning');
+    } else {
+      stickyTimeDisplay.classList.remove('warning');
+    }
+    
+    stickyStudentName.textContent = `👤 ${currentStudentName}`;
+  }
+
+  function startTest() {
+    const name = document.getElementById('studentName').value.trim();
+    if (!name) {
+      showStatus('Please enter your name before starting the test.', 'error');
+      return;
+    }
+
+    if (hasSubmitted(name)) {
+      const sub = getSubmission(name);
+      showStatus(
+        `⚠️ ${name} has already completed this test on ${new Date(sub.timestamp).toLocaleDateString()}. ` +
+        `Please contact the administrator if you need to retake it.`,
+        'error'
+      );
+      return;
+    }
+
+    currentStudentName = name;
+    
+    // Show sticky timer
+    document.getElementById('stickyTimer').classList.remove('hidden');
+    document.getElementById('stickyStudentName').textContent = `👤 ${name}`;
+    
+    // Hide header content during test
+    document.getElementById('headerContent').style.display = 'none';
+    document.getElementById('timerDisplay').style.display = 'none';
+    
+    document.getElementById('nameSection').classList.add('hidden');
+    document.getElementById('testContainer').classList.remove('hidden');
+    document.getElementById('statusMsg').className = 'status-msg';
+    document.getElementById('statusMsg').style.display = 'none';
+    renderQuestions();
+    startTimer();
+    testStarted = true;
+  }
+
+  function renderQuestions() {
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = '';
+    questions.forEach((q, index) => {
+      const block = document.createElement('div');
+      block.className = 'question-block';
+      block.id = `q${index}`;
+      const qNum = index + 1;
+      block.innerHTML = `<h3>${qNum}. ${q.q}</h3><div class="options">`;
+      q.options.forEach((opt, optIndex) => {
+        block.innerHTML += `
+          <label>
+            <input type="radio" name="q${index}" value="${optIndex}" />
+            ${String.fromCharCode(65 + optIndex)}. ${opt}
+          </label>
+        `;
+      });
+      block.innerHTML += `</div>`;
+      container.appendChild(block);
+    });
+  }
+
+  function startTimer() {
+    const timerEl = document.getElementById('timerDisplay');
+    const stickyTimeDisplay = document.getElementById('stickyTimeDisplay');
+    
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      
+      // Update both timers
+      timerEl.textContent = `⏱️ ${timeStr}`;
+      stickyTimeDisplay.textContent = timeStr;
+      
+      if (timeLeft <= 300) {
+        timerEl.classList.add('warning');
+        stickyTimeDisplay.classList.add('warning');
+      }
+      
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        if (!testCompleted) submitTest();
+      }
+    }, 1000);
+  }
+
+  function submitTest() {
+    if (testCompleted || !testStarted) return;
+    clearInterval(timerInterval);
+
+    let correct = 0;
+    let total = questions.length;
+    const details = [];
+    const categoryStats = {};
+
+    questions.forEach((q, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      const userAnswer = selected ? parseInt(selected.value) : -1;
+      const isCorrect = userAnswer === q.answer;
+      if (isCorrect) correct++;
+
+      const cat = q.category || "Other";
+      if (!categoryStats[cat]) {
+        categoryStats[cat] = { correct: 0, wrong: 0, total: 0, wrongQuestions: [] };
+      }
+      categoryStats[cat].total++;
+      if (isCorrect) {
+        categoryStats[cat].correct++;
+      } else {
+        categoryStats[cat].wrong++;
+        categoryStats[cat].wrongQuestions.push(index + 1);
+      }
+
+      // Highlight answers
+      const block = document.getElementById(`q${index}`);
+      if (block) {
+        const labels = block.querySelectorAll('.options label');
+        labels.forEach((label, i) => {
+          if (i === q.answer) label.classList.add('correct');
+          if (i === userAnswer && !isCorrect) label.classList.add('incorrect');
+        });
+        // Disable all inputs
+        block.querySelectorAll('input').forEach(inp => inp.disabled = true);
+      }
+
+      details.push({
+        num: index + 1,
+        correct: isCorrect,
+        category: cat,
+        userAnswer: userAnswer >= 0 ? q.options[userAnswer] : 'Not answered',
+        correctAnswer: q.options[q.answer]
+      });
+    });
+
+    const score = correct;
+    const levelInfo = getLevel(score);
+    const percentage = Math.round((score / total) * 100);
+
+    // Build weaknesses and strengths
+    const weaknesses = [];
+    const strengths = [];
+    for (const [cat, stats] of Object.entries(categoryStats)) {
+      const pct = Math.round((stats.correct / stats.total) * 100);
+      if (pct < 60 && stats.wrong > 0) {
+        weaknesses.push({
+          category: cat,
+          percentage: pct,
+          wrongCount: stats.wrong,
+          total: stats.total,
+          questions: stats.wrongQuestions.join(', ')
+        });
+      } else if (pct >= 80) {
+        strengths.push({
+          category: cat,
+          percentage: pct,
+          correctCount: stats.correct,
+          total: stats.total
+        });
+      }
+    }
+
+    weaknesses.sort((a, b) => a.percentage - b.percentage);
+    strengths.sort((a, b) => b.percentage - a.percentage);
+
+    // Save submission
+    const submissionData = {
+      name: currentStudentName,
+      score: score,
+      total: total,
+      percentage: percentage,
+      level: levelInfo.level,
+      description: levelInfo.description,
+      weaknesses: weaknesses,
+      strengths: strengths,
+      details: details,
+      timestamp: Date.now()
+    };
+    saveSubmission(currentStudentName, submissionData);
+    testCompleted = true;
+
+    // Hide sticky timer and show result
+    document.getElementById('stickyTimer').classList.add('hidden');
+    document.getElementById('testContainer').classList.add('hidden');
+    document.getElementById('timerDisplay').style.display = 'none';
+    
+    const resultBox = document.getElementById('resultBox');
+    resultBox.style.display = 'block';
+    document.getElementById('resultName').textContent = `Student: ${currentStudentName}`;
+    document.getElementById('resultLevel').textContent = levelInfo.level + ' – ' + levelInfo.description;
+    document.getElementById('resultLevel').style.color = levelInfo.color;
+    document.getElementById('resultScore').textContent = `Score: ${score} / ${total} (${percentage}%)`;
+
+    // Show weaknesses
+    const weaknessesList = document.getElementById('weaknessesList');
+    weaknessesList.innerHTML = '';
+    if (weaknesses.length === 0) {
+      weaknessesList.innerHTML = '<li style="color:#a8d5a8;">🎉 No major weaknesses identified! Great job!</li>';
+    } else {
+      weaknesses.forEach(w => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>🔴 ${w.category}</span>
+          <span class="weakness-tag">${w.percentage}%</span>
+          <span style="font-size:0.8rem; opacity:0.7;">(${w.wrongCount}/${w.total} wrong – Q${w.questions})</span>
+        `;
+        weaknessesList.appendChild(li);
+      });
+    }
+
+    // Show strengths
+    const strengthsList = document.getElementById('strengthsList');
+    strengthsList.innerHTML = '';
+    if (strengths.length === 0) {
+      strengthsList.innerHTML = '<li style="color:#f5b042;">📚 Keep practicing to build your strengths!</li>';
+    } else {
+      strengths.slice(0, 5).forEach(s => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>🟢 ${s.category}</span>
+          <span class="strength-tag">${s.percentage}%</span>
+          <span style="font-size:0.8rem; opacity:0.7;">(${s.correctCount}/${s.total} correct)</span>
+        `;
+        strengthsList.appendChild(li);
+      });
+    }
+
+    // Show detailed breakdown
+    const detailsList = document.getElementById('resultDetails');
+    detailsList.innerHTML = '';
+    details.forEach(d => {
+      const li = document.createElement('li');
+      li.textContent = `Q${d.num}: ${d.correct ? '✅' : '❌'} ${d.category} – ${d.correct ? 'Correct' : 'Correct: ' + d.correctAnswer + ' (Your: ' + d.userAnswer + ')'}`;
+      detailsList.appendChild(li);
+    });
+
+    // Generate MAX message
+    generateMaxMessage(submissionData);
+
+    resultBox.scrollIntoView({ behavior: 'smooth' });
+    showStatus(`✅ Test submitted successfully! Results sent to ${currentStudentName}.`, 'success');
+  }
+
+  // ===== MAX INTEGRATION =====
+  function generateMaxMessage(data) {
+    const msg = `
+📊 *English Diagnostic Test Results*
+
+👤 *Student:* ${data.name}
+📅 *Date:* ${new Date(data.timestamp).toLocaleDateString()}
+🎯 *Level:* ${data.level}
+📈 *Score:* ${data.score}/${data.total} (${data.percentage}%)
+
+🔴 *Areas for Improvement:*
+${data.weaknesses.length > 0 ? data.weaknesses.map(w => `  • ${w.category}: ${w.percentage}% (${w.wrongCount}/${w.total} wrong)`).join('\n') : '  • None identified! 🎉'}
+
+🟢 *Strengths:*
+${data.strengths.length > 0 ? data.strengths.slice(0, 5).map(s => `  • ${s.category}: ${s.percentage}%`).join('\n') : '  • Keep practicing!'}
+
+📝 *Details:* See full breakdown in the detailed results.
+
+---
+*English To Perfection – Diagnostic Test*
+    `.trim();
+
+    document.getElementById('maxMessage').value = msg;
+
+    // Set MAX link
+    const maxLink = document.getElementById('maxLink');
+    maxLink.href = `https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg?text=${encodeURIComponent(msg)}`;
+  }
+
+  function copyToClipboard() {
+    const textarea = document.getElementById('maxMessage');
+    textarea.select();
+    document.execCommand('copy');
+    document.getElementById('sendStatus').textContent = '✅ Copied to clipboard! You can now paste it in MAX.';
+    setTimeout(() => document.getElementById('sendStatus').textContent = '', 3000);
+  }
+
+  function sendToMax() {
+    const msg = document.getElementById('maxMessage').value;
+    const maxLink = document.getElementById('maxLink');
+    maxLink.href = `https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg?text=${encodeURIComponent(msg)}`;
+    window.open(maxLink.href, '_blank');
+    document.getElementById('sendStatus').textContent = '✅ Opening MAX...';
+    setTimeout(() => document.getElementById('sendStatus').textContent = '', 3000);
+  }
+
+  // ===== ADMIN FUNCTIONS =====
+  function resetStudentAccess() {
+    const name = document.getElementById('adminName').value.trim();
+    if (!name) {
+      document.getElementById('adminStatus').textContent = '⚠️ Please enter a student name.';
+      return;
+    }
+    if (!hasSubmitted(name)) {
+      document.getElementById('adminStatus').textContent = `⚠️ No record found for "${name}".`;
+      return;
+    }
+    resetStudent(name);
+    document.getElementById('adminStatus').textContent = `✅ Access reset for "${name}". They can now retake the test.`;
+    document.getElementById('adminName').value = '';
+  }
+
+  function viewSubmittedStudents() {
+    const submissions = getSubmissions();
+    const names = Object.keys(submissions);
+    if (names.length === 0) {
+      document.getElementById('adminStatus').textContent = '📋 No students have submitted the test yet.';
+      return;
+    }
+    let msg = '📋 Submitted Students:\n';
+    names.forEach(name => {
+      const data = submissions[name];
+      msg += `  • ${name}: ${data.score}/${data.total} (${data.level})\n`;
+    });
+    document.getElementById('adminStatus').textContent = msg;
+  }
+
+  // ===== STATUS MESSAGE =====
+  function showStatus(msg, type = 'info') {
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    el.className = `status-msg ${type}`;
+    el.style.display = 'block';
+  }
+
+  // ===== PREVENT ACCIDENTAL NAVIGATION =====
+  window.addEventListener('beforeunload', (e) => {
+    if (testStarted && !testCompleted) {
+      e.preventDefault();
+      e.returnValue = 'You have not finished the test. Are you sure you want to leave?';
+    }
+  });
+</script>
+
+</body>
+</html>
