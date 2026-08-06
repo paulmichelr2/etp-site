@@ -314,6 +314,7 @@
     .test-card .btn-orange { background: #e87a3a; }
     .test-card .btn-brown { background: #a85a3a; }
     .test-card .btn-red { background: #6a3a3a; }
+    .test-card .btn-purple { background: #6a3a8a; }
 
     .access-note {
       background: #fef9e7;
@@ -354,6 +355,19 @@
       border-radius: 30px;
       font-size: 0.75rem;
       border: 1px solid #e2e8f0;
+    }
+
+    .teacher-decision-note {
+      background: #e8f4f8;
+      border-left: 6px solid #2a7a8a;
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .teacher-decision-note strong {
+      color: #0b2b4a;
     }
 
     footer {
@@ -690,6 +704,16 @@
         <strong>Для доступа требуется авторизация.</strong>
       </p>
 
+      <!-- TEACHER DECISION NOTE -->
+      <div class="teacher-decision-note">
+        <p style="font-size: 1.05rem;">
+          👩‍🏫 <strong>Важно:</strong> Преподаватель определит, какой из тестов ниже вам нужно пройти — 
+          <strong>Placement Test</strong> (60 вопросов, 45 минут) или 
+          <strong>Diagnostic Test</strong> (100 вопросов, 60 минут).
+          Свяжитесь с нами, чтобы получить доступ к нужному тесту.
+        </p>
+      </div>
+
       <div class="access-note">
         <p>🔐 <strong>Для доступа к тестам требуется авторизация.</strong> Если вы ещё не получили разрешение от преподавателя, свяжитесь с нами через один из мессенджеров:</p>
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:0.8rem;">
@@ -701,6 +725,22 @@
       </div>
 
       <div class="grid">
+        <!-- PLACEMENT TEST -->
+        <div class="test-card" style="border-left-color: #6a3a8a;">
+          <h4>📋 Placement Test</h4>
+          <p>60 вопросов • 45 минут • Быстрая оценка уровня</p>
+          <p style="font-size:0.8rem; color:#6a7e96; margin-bottom:0.5rem;">CEFR: A0 → C2</p>
+          <a href="placement-test-teens-adults.html" class="btn-sm btn-purple">Перейти к тесту →</a>
+        </div>
+
+        <!-- DIAGNOSTIC TEST -->
+        <div class="test-card" style="border-left-color: #2a7a8a;">
+          <h4>🔬 Diagnostic Test</h4>
+          <p>100 вопросов • 60 минут • Глубокая диагностика</p>
+          <p style="font-size:0.8rem; color:#6a7e96; margin-bottom:0.5rem;">CEFR: A0 → C2</p>
+          <a href="diagnostic-test-teens-adults.html" class="btn-sm" style="background:#2a7a8a; color:white; padding:8px 20px; border-radius:30px; font-weight:600; font-size:0.85rem; text-decoration:none; display:inline-block; transition:0.2s; border:none; cursor:pointer;">Перейти к тесту →</a>
+        </div>
+
         <div class="test-card" style="border-left-color: #4a76a8;">
           <h4>🧒 Young Learners</h4>
           <p>Cambridge YLE Sample Tests. Для детей 7–12 лет. ~30 мин.</p>

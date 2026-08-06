@@ -52,7 +52,7 @@
     .access-note-mini { background: #fef9e7; border-radius: 8px; padding: 0.5rem 0.8rem; margin: 0.5rem 0; font-size: 0.75rem; border-left: 3px solid #f5b042; }
     .access-note-mini a { color: #0b2b4a; font-weight: 600; }
 
-    /* ===== PHILOSOPHY BRIEF (UPDATED) ===== */
+    /* ===== PHILOSOPHY BRIEF ===== */
     .philosophy-brief {
       background: #f5fafe;
       border-left: 6px solid #f5b042;
@@ -76,6 +76,19 @@
       border-radius: 8px;
       border: 1px solid #e2e8f0;
       font-size: 0.8rem;
+    }
+
+    /* ===== TEACHER DECISION NOTE ===== */
+    .teacher-decision-note-mini {
+      background: #e8f4f8;
+      border-left: 6px solid #2a7a8a;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem 0;
+      font-size: 0.8rem;
+    }
+    .teacher-decision-note-mini strong {
+      color: #0b2b4a;
     }
 
     /* ===== MODAL ===== */
@@ -170,7 +183,7 @@
     <div class="card"><h4>📝 Экзамены 2 раза в год</h4><p>Сертификат и переход на следующий уровень</p></div>
   </div>
 
-  <!-- ===== PHILOSOPHY (BRIEF VERSION - UPDATED) ===== -->
+  <!-- ===== PHILOSOPHY ===== -->
   <h2>🤝 Наша философия</h2>
   <div class="philosophy-brief">
     <p>
@@ -217,16 +230,61 @@
 
   <!-- ===== TESTS ===== -->
   <h2>📝 Тесты</h2>
+  
+  <!-- TEACHER DECISION NOTE -->
+  <div class="teacher-decision-note-mini">
+    <p>👩‍🏫 <strong>Важно:</strong> Преподаватель определит, какой из тестов ниже вам нужно пройти — 
+    <strong>Placement Test</strong> (60 вопросов, 45 мин.) или 
+    <strong>Diagnostic Test</strong> (100 вопросов, 60 мин.).</p>
+  </div>
+
   <div class="access-note-mini">
     <p>🔐 <strong>Требуется авторизация.</strong> Свяжитесь с нами: <a href="https://t.me/+79521212943" target="_blank">Telegram</a>, <a href="https://wa.me/79521212943" target="_blank">WhatsApp</a>, <a href="https://vk.ru/club226065699" target="_blank">VK</a>, <a href="https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg" target="_blank">MAX</a></p>
   </div>
+
   <div class="test-grid">
-    <div class="test-mini" style="border-left-color:#4a76a8;"><h4>🧒 Young Learners</h4><p>~30 мин</p><a href="test-young-learners.html">Перейти →</a></div>
-    <div class="test-mini" style="border-left-color:#8a8a3a;"><h4>🧑‍🎓 Teens</h4><p>~30 мин</p><a href="test-teens.html">Перейти →</a></div>
-    <div class="test-mini" style="border-left-color:#5a8a3a;"><h4>👤 Adults</h4><p>~25 мин</p><a href="test-adults.html">Перейти →</a></div>
-    <div class="test-mini" style="border-left-color:#e87a3a;"><h4>🎓 IELTS</h4><p>50 мин</p><a href="test-ielts.html">Перейти →</a></div>
-    <div class="test-mini" style="border-left-color:#a85a3a;"><h4>📜 Cambridge</h4><p>50 мин</p><a href="test-cambridge.html">Перейти →</a></div>
-    <div class="test-mini" style="border-left-color:#6a3a3a;"><h4>🇷🇺 OGE/EGE</h4><p>15 мин</p><a href="test-russian-exams.html">Перейти →</a></div>
+    <!-- Placement Test -->
+    <div class="test-mini" style="border-left-color:#6a3a8a;">
+      <h4>📋 Placement Test</h4>
+      <p>60 вопросов • 45 мин</p>
+      <a href="placement-test-teens-adults.html">Перейти →</a>
+    </div>
+    <!-- Diagnostic Test -->
+    <div class="test-mini" style="border-left-color:#2a7a8a;">
+      <h4>🔬 Diagnostic Test</h4>
+      <p>100 вопросов • 60 мин</p>
+      <a href="diagnostic-test-teens-adults.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#4a76a8;">
+      <h4>🧒 Young Learners</h4>
+      <p>~30 мин</p>
+      <a href="test-young-learners.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#8a8a3a;">
+      <h4>🧑‍🎓 Teens</h4>
+      <p>~30 мин</p>
+      <a href="test-teens.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#5a8a3a;">
+      <h4>👤 Adults</h4>
+      <p>~25 мин</p>
+      <a href="test-adults.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#e87a3a;">
+      <h4>🎓 IELTS</h4>
+      <p>50 мин</p>
+      <a href="test-ielts.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#a85a3a;">
+      <h4>📜 Cambridge</h4>
+      <p>50 мин</p>
+      <a href="test-cambridge.html">Перейти →</a>
+    </div>
+    <div class="test-mini" style="border-left-color:#6a3a3a;">
+      <h4>🇷🇺 OGE/EGE</h4>
+      <p>15 мин</p>
+      <a href="test-russian-exams.html">Перейти →</a>
+    </div>
   </div>
 
   <!-- ===== BUTTONS ===== -->

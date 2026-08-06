@@ -107,6 +107,9 @@
     .primary { background: #f5b042; color: #0b2b4a; }
     .primary:hover { background: #e6a03a; transform: translateY(-2px); }
 
+    .btn-purple { background: #6a3a8a; color: white; padding: 6px 18px; border-radius: 30px; font-weight: 600; font-size: 0.8rem; text-decoration: none; display: inline-block; transition: 0.2s; }
+    .btn-purple:hover { transform: scale(1.02); opacity: 0.9; }
+
     .thankyou-page { display: none; text-align: center; padding: 3rem 1rem; animation: fadeIn 0.6s ease; }
     .thankyou-page.show { display: block; }
     .thankyou-page .big-icon { font-size: 4rem; }
@@ -201,6 +204,19 @@
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .teacher-decision-note {
+      background: #e8f4f8;
+      border-left: 6px solid #2a7a8a;
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .teacher-decision-note strong {
+      color: #0b2b4a;
     }
 
     @media (max-width: 700px) {
@@ -360,7 +376,7 @@
       </div>
     </div>
 
-    <!-- ===== 3. PHILOSOPHY (UPDATED WITH NEW TEXT) ===== -->
+    <!-- ===== 3. PHILOSOPHY ===== -->
     <h2 id="philosophy">🤝 3. Наша философия: строим характер, а не просто готовим к экзаменам</h2>
 
     <div class="detail-card" style="border-left-color: #2a7a8a; background: #f5fafe;">
@@ -556,46 +572,76 @@
     <div class="detail-card">
       <h3>🔹 Для доступа к тестам требуется авторизация</h3>
       <p>Чтобы получить доступ к тестам, пожалуйста, свяжитесь с нами через один из мессенджеров ниже и запросите разрешение. После подтверждения вы сможете перейти к тесту по вашей ссылке.</p>
+      
+      <!-- TEACHER DECISION NOTE -->
+      <div class="teacher-decision-note">
+        <p style="font-size: 1.05rem;">
+          👩‍🏫 <strong>Важно:</strong> Преподаватель определит, какой из тестов ниже вам нужно пройти — 
+          <strong>Placement Test</strong> (60 вопросов, 45 минут) или 
+          <strong>Diagnostic Test</strong> (100 вопросов, 60 минут).
+          Свяжитесь с нами, чтобы получить доступ к нужному тесту.
+        </p>
+      </div>
+      
       <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1rem;">
         <a href="https://t.me/+79521212943" target="_blank" class="btn" style="background:#0088cc; color:white; padding:0.5rem 1.5rem; border-radius:30px; text-decoration:none;">💬 Telegram</a>
         <a href="https://wa.me/79521212943" target="_blank" class="btn" style="background:#25d366; color:white; padding:0.5rem 1.5rem; border-radius:30px; text-decoration:none;">💚 WhatsApp</a>
         <a href="https://vk.ru/club226065699" target="_blank" class="btn" style="background:#4a76a8; color:white; padding:0.5rem 1.5rem; border-radius:30px; text-decoration:none;">📱 VK</a>
         <a href="https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg" target="_blank" class="btn" style="background:#2d2d2d; color:white; padding:0.5rem 1.5rem; border-radius:30px; text-decoration:none;">⚡ MAX</a>
       </div>
+      
       <div class="highlight-box" style="margin-top:1rem;">
         <p><strong>⚠️ Важно:</strong> После получения разрешения, нажмите на нужный тест ниже, чтобы начать. Результаты тестов не сохраняются на этом сайте.</p>
       </div>
     </div>
 
     <div class="grid-2" style="margin-top:1.5rem;">
+      <!-- PLACEMENT TEST -->
+      <div class="test-card" style="border-left-color: #6a3a8a;">
+        <h4 style="color:#0b2b4a;">📋 Placement Test</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">60 вопросов • 45 минут • Быстрая оценка уровня</p>
+        <p style="font-size:0.8rem; color:#6a7e96; margin-bottom:0.5rem;">CEFR: A0 → C2</p>
+        <a href="placement-test-teens-adults.html" class="btn-sm btn-purple">Перейти к тесту →</a>
+      </div>
+      
+      <!-- DIAGNOSTIC TEST -->
+      <div class="test-card" style="border-left-color: #2a7a8a;">
+        <h4 style="color:#0b2b4a;">🔬 Diagnostic Test</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">100 вопросов • 60 минут • Глубокая диагностика</p>
+        <p style="font-size:0.8rem; color:#6a7e96; margin-bottom:0.5rem;">CEFR: A0 → C2</p>
+        <a href="diagnostic-test-teens-adults.html" class="btn-sm" style="background:#2a7a8a; color:white; padding:6px 18px; border-radius:30px; font-weight:600; font-size:0.8rem; text-decoration:none; display:inline-block; transition:0.2s;">Перейти к тесту →</a>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1rem;">
       <div class="test-card" style="border-left-color: #4a76a8;">
-        <h4 style="color:#0b2b4a;">🧒 1. Young Learners</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge YLE Sample Tests. Для детей 7–12 лет. ~30 минут.</p>
+        <h4 style="color:#0b2b4a;">🧒 Young Learners</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge YLE Sample Tests. ~30 мин.</p>
         <a href="test-young-learners.html" class="btn-sm btn-blue">Перейти к тесту →</a>
       </div>
       <div class="test-card" style="border-left-color: #8a8a3a;">
-        <h4 style="color:#0b2b4a;">🧑‍🎓 2. Teens</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge Sample Exams for Schools. Для подростков 12–17 лет. ~30 минут.</p>
+        <h4 style="color:#0b2b4a;">🧑‍🎓 Teens</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge Sample Exams for Schools. ~30 мин.</p>
         <a href="test-teens.html" class="btn-sm btn-gold">Перейти к тесту →</a>
       </div>
       <div class="test-card" style="border-left-color: #5a8a3a;">
-        <h4 style="color:#0b2b4a;">👤 3. Adults</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge Test Your English – General English. Для взрослых. ~25 минут.</p>
+        <h4 style="color:#0b2b4a;">👤 Adults</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">Cambridge Test Your English. ~25 мин.</p>
         <a href="test-adults.html" class="btn-sm btn-green">Перейти к тесту →</a>
       </div>
       <div class="test-card" style="border-left-color: #e87a3a;">
-        <h4 style="color:#0b2b4a;">🎓 4. IELTS Preparation</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">British Council IELTS Practice (via EF SET). 50 минут.</p>
+        <h4 style="color:#0b2b4a;">🎓 IELTS Preparation</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">British Council IELTS Practice. 50 мин.</p>
         <a href="test-ielts.html" class="btn-sm btn-orange">Перейти к тесту →</a>
       </div>
       <div class="test-card" style="border-left-color: #a85a3a;">
-        <h4 style="color:#0b2b4a;">📜 5. Cambridge Exams</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">Official Sample Papers (via EF SET). 50 минут.</p>
+        <h4 style="color:#0b2b4a;">📜 Cambridge Exams</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">Official Sample Papers. 50 мин.</p>
         <a href="test-cambridge.html" class="btn-sm btn-brown">Перейти к тесту →</a>
       </div>
       <div class="test-card" style="border-left-color: #6a3a3a;">
-        <h4 style="color:#0b2b4a;">🇷🇺 6. Russian OGE/EGE</h4>
-        <p style="font-size:0.9rem; color:#3a5a7a;">Official FIPI Demo Papers (via EF SET). 15 минут.</p>
+        <h4 style="color:#0b2b4a;">🇷🇺 Russian OGE/EGE</h4>
+        <p style="font-size:0.9rem; color:#3a5a7a;">Official FIPI Demo Papers. 15 мин.</p>
         <a href="test-russian-exams.html" class="btn-sm btn-red">Перейти к тесту →</a>
       </div>
     </div>
