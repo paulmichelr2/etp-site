@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Classes – English To Perfection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body { background: #f0f4f9; padding: 2rem 1rem; display: flex; justify-content: center; }
+    .container { max-width: 1200px; width: 100%; background: white; border-radius: 32px; padding: 2.5rem 2.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+    .logo { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+    .logo-icon { font-size: 2.4rem; background: #0b2b4a; color: #f5b042; width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.8rem; }
+    .logo-text { font-size: 2.6rem; font-weight: 700; color: #0b2b4a; letter-spacing: -0.5px; }
+    .logo-text span { color: #f5b042; }
+    .subhead { font-size: 1.1rem; color: #3a5a7a; margin: 0.3rem 0 1.8rem 0; border-left: 5px solid #f5b042; padding-left: 1rem; }
+    .badge { background: #eef6ff; color: #0b2b4a; padding: 0.3rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-bottom: 0.5rem; }
+
+    h1 { font-size: 2.2rem; color: #0b2b4a; margin-top: 0.5rem; }
+    h2 { font-size: 1.8rem; color: #0b2b4a; margin: 2.5rem 0 1rem 0; border-bottom: 3px solid #f5b042; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.4rem; color: #0b2b4a; margin: 1.8rem 0 0.8rem 0; }
+    h4 { font-size: 1.1rem; color: #1a3a5a; margin: 1rem 0 0.3rem 0; }
+
+    .group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1rem 0; }
+    .group-card { background: #f9fbfd; border-radius: 16px; padding: 1.5rem; border-left: 6px solid #f5b042; transition: 0.3s; }
+    .group-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .group-card .group-tag { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.7rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .group-card .tag-young { background: #d4edda; color: #155724; }
+    .group-card .tag-teens { background: #cce5ff; color: #004085; }
+    .group-card .tag-adult { background: #fef9e7; color: #856404; }
+    .group-card .tag-new { background: #f5b042; color: #0b2b4a; }
+    .group-card .tag-old { background: #e2e3e5; color: #383d41; }
+    .group-card h4 { margin-top: 0; }
+    .group-card p { font-size: 0.9rem; color: #3a5a7a; line-height: 1.6; }
+
+    .criteria-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .criteria-item { background: white; border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid #e2e8f0; }
+    .criteria-item .icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+    .criteria-item h4 { margin-top: 0; font-size: 1rem; }
+    .criteria-item p { font-size: 0.85rem; color: #6a7e96; }
+
+    .process-steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin: 1rem 0; }
+    .step { background: #f9fbfd; border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid #e2e8f0; position: relative; }
+    .step .step-number { background: #0b2b4a; color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 0.8rem auto; }
+    .step h4 { margin-top: 0; }
+    .step p { font-size: 0.9rem; color: #3a5a7a; line-height: 1.6; }
+    .step .arrow { font-size: 1.5rem; color: #f5b042; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); }
+    .step:last-child .arrow { display: none; }
+
+    .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0; }
+    .action-btn { padding: 1rem 2.5rem; border-radius: 60px; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 0.6rem; color: white; border: none; cursor: pointer; }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .btn-young { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .btn-teens { background: linear-gradient(135deg, #4a76a8, #2a5a8a); }
+    .btn-adult { background: linear-gradient(135deg, #e87a3a, #c85a2a); }
+
+    .remark-box { background: #fef9e7; border-radius: 16px; padding: 1.5rem 2rem; margin: 1.5rem 0; border-left: 6px solid #f5b042; }
+    .remark-box p { line-height: 1.8; color: #2a3a5a; }
+    .remark-box strong { color: #0b2b4a; }
+
+    .highlight-box { background: #eef6ff; border-radius: 12px; padding: 1.2rem; margin: 0.8rem 0; border: 1px solid #d0d7e2; }
+    .highlight-box strong { color: #0b2b4a; }
+
+    .btn-back { background: #f5b042; color: #0b2b4a; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1.5rem; }
+    .btn-back:hover { background: #e6a03a; transform: scale(1.02); }
+
+    .footer { margin-top: 2.5rem; font-size: 0.85rem; color: #6a7e96; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 9999;
+      justify-content: center; align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white; border-radius: 24px; padding: 2.5rem;
+      max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center; animation: fadeInUp 0.3s ease;
+    }
+    .modal h2 { font-size: 1.8rem; color: #0b2b4a; margin-bottom: 0.5rem; }
+    .modal p { color: #6a7e96; margin-bottom: 1.5rem; line-height: 1.6; }
+    .modal .contact-options { display: flex; flex-direction: column; gap: 0.8rem; }
+    .modal .contact-options a {
+      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      padding: 0.9rem 1.5rem; border-radius: 60px; font-weight: 600;
+      text-decoration: none; transition: 0.2s; color: white; font-size: 1rem;
+    }
+    .modal .contact-options a:hover { transform: scale(1.02); opacity: 0.9; }
+    .modal .contact-options .telegram { background: #0088cc; }
+    .modal .contact-options .whatsapp { background: #25d366; }
+    .modal .contact-options .vk { background: #4a76a8; }
+    .modal .contact-options .max { background: #2d2d2d; }
+    .modal .close-modal {
+      margin-top: 1.2rem; background: none; border: none;
+      color: #6a7e96; font-size: 0.9rem; cursor: pointer; text-decoration: underline;
+    }
+    .modal .close-modal:hover { color: #0b2b4a; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      .logo-text { font-size: 1.8rem; }
+      .logo-icon { width: 48px; height: 48px; font-size: 1.4rem; }
+      .container { padding: 1.2rem 1rem; }
+      .group-grid { grid-template-columns: 1fr; }
+      .criteria-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .step .arrow { display: none; }
+      .action-buttons { flex-direction: column; align-items: center; }
+      .action-btn { width: 100%; justify-content: center; }
+      .modal { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ===== CONTACT MODAL ===== -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <h2 id="modalTitle">📱 Выберите способ связи</h2>
+      <p id="modalMessage">Нажмите на удобный для вас мессенджер, чтобы записаться в группу.</p>
+      <div class="contact-options">
+        <a href="#" id="telegramLink" target="_blank" class="telegram">💬 Telegram</a>
+        <a href="#" id="whatsappLink" target="_blank" class="whatsapp">💚 WhatsApp</a>
+        <a href="#" id="vkLink" target="_blank" class="vk">📱 VKontakte</a>
+        <a href="#" id="maxLink" target="_blank" class="max">⚡ MAX</a>
+      </div>
+      <button class="close-modal" onclick="closeModal()">✕ Закрыть</button>
+    </div>
+  </div>
+
+  <!-- ===== LOGO ===== -->
+  <div class="logo">
+    <div class="logo-icon">ETP</div>
+    <div class="logo-text">English <span>To</span> Perfection</div>
+  </div>
+  <span class="badge">👥 Group Classes</span>
+  <div class="subhead">Выберите свою группу и начните говорить по-английски вместе с нами.</div>
+
+  <h1>📚 Групповые занятия</h1>
+  <p style="color:#3a5a7a; max-width:800px; margin:0.5rem 0 1.5rem 0;">
+    Мы предлагаем групповые занятия для всех возрастов и уровней. 
+    Группы формируются по результатам <strong>бесплатного тестирования</strong> 
+    и индивидуальной беседы с преподавателем.
+  </p>
+
+  <!-- ============================================================ -->
+  <!-- GROUP CLASSES -->
+  <h2>📋 Текущие группы ETP</h2>
+
+  <div class="group-grid">
+    <!-- Old Younger Starters Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-young">Young Learners</span>
+        <span class="group-tag tag-old">Старая группа</span>
+      </div>
+      <h4>🧒 Old Younger Starters Group</h4>
+      <p>Для самых маленьких учеников, которые уже знакомы с алфавитом и базовыми словами. Продолжают развивать навыки чтения, письма и разговорной речи.</p>
+    </div>
+
+    <!-- New Younger Starters Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-young">Young Learners</span>
+        <span class="group-tag tag-new">Новая группа</span>
+      </div>
+      <h4>🧒 New Younger Starters Group</h4>
+      <p>Для детей, которые только начинают свой путь в английском языке. Изучаем алфавит, базовую лексику и простые фразы через игры и интерактив.</p>
+    </div>
+
+    <!-- Old Older Starters Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-young">Young Learners</span>
+        <span class="group-tag tag-old">Старая группа</span>
+      </div>
+      <h4>🧑‍🎓 Old Older Starters Group</h4>
+      <p>Для детей постарше, которые уже уверенно читают и пишут. Углубляем грамматику, расширяем словарный запас и развиваем устную речь.</p>
+    </div>
+
+    <!-- Old Teen/Movers/Flyers Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-teens">Teens</span>
+        <span class="group-tag tag-old">Старая группа</span>
+      </div>
+      <h4>🧑‍🎓 Old Teen / Movers / Flyers Group</h4>
+      <p>Для подростков, готовящихся к экзаменам или продолжающих обучение на уровнях Movers и Flyers. Акцент на разговорную практику и подготовку к международным экзаменам.</p>
+    </div>
+
+    <!-- New Teen/Movers/Flyers Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-teens">Teens</span>
+        <span class="group-tag tag-new">Новая группа</span>
+      </div>
+      <h4>🧑‍🎓 New Teen / Movers / Flyers Group</h4>
+      <p>Новая группа для подростков, которые хотят начать или продолжить подготовку к экзаменам Movers и Flyers. Интенсивная разговорная практика и работа с экзаменационными материалами.</p>
+    </div>
+
+    <!-- Adult Group -->
+    <div class="group-card">
+      <div>
+        <span class="group-tag tag-adult">Adults</span>
+      </div>
+      <h4>👤 Adult Group</h4>
+      <p>Для взрослых, желающих преодолеть языковой барьер, улучшить разговорные навыки и уверенно использовать английский в работе и путешествиях.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CRITERIA -->
+  <h2>🎯 Критерии оценки уровня</h2>
+  <p style="color:#3a5a7a; margin-bottom: 1rem;">
+    Мы оцениваем каждого ученика по четырём ключевым параметрам:
+  </p>
+
+  <div class="criteria-grid">
+    <div class="criteria-item">
+      <span class="icon">💬</span>
+      <h4>Разговорная речь</h4>
+      <p>Базовые навыки повседневного общения</p>
+    </div>
+    <div class="criteria-item">
+      <span class="icon">📖</span>
+      <h4>Лексический запас</h4>
+      <p>Объём и разнообразие слов</p>
+    </div>
+    <div class="criteria-item">
+      <span class="icon">📚</span>
+      <h4>Чтение</h4>
+      <p>Скорость и понимание прочитанного</p>
+    </div>
+    <div class="criteria-item">
+      <span class="icon">✍️</span>
+      <h4>Письмо</h4>
+      <p>Знание алфавита и базовое письмо</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ASSESSMENT PROCESS -->
+  <h2>📝 Как мы определяем уровень</h2>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h4>📅 Бесплатный пробный урок</h4>
+      <p>Индивидуальная беседа с преподавателем для знакомства и оценки уровня.</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h4>📊 Онлайн тест</h4>
+      <p>Проверка грамматики, лексики, чтения и аудирования.</p>
+      <span class="arrow">→</span>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h4>🎯 Рекомендация</h4>
+      <p>Анализ результатов и рекомендация подходящего формата обучения.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>После тестирования:</strong></p>
+    <ul style="list-style: none; padding: 0.5rem 0 0 1rem;">
+      <li style="padding: 0.2rem 0;">✅ Преподаватель анализирует результаты</li>
+      <li style="padding: 0.2rem 0;">✅ Сообщает примерный уровень</li>
+      <li style="padding: 0.2rem 0;">✅ Рекомендует подходящий тип занятий</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ACTION BUTTONS -->
+  <h2>🚀 Записаться в группу</h2>
+  <p style="color:#3a5a7a; text-align:center; max-width:700px; margin:0 auto 1.5rem auto;">
+    Выберите свою возрастную категорию и напишите нам. Мы подберём подходящую группу и пригласим на пробное занятие.
+  </p>
+
+  <div class="action-buttons">
+    <button class="action-btn btn-young" onclick="openModal('Young Learners')">
+      🧒 Young Learners
+    </button>
+    <button class="action-btn btn-teens" onclick="openModal('Teens')">
+      🧑‍🎓 Teens
+    </button>
+    <button class="action-btn btn-adult" onclick="openModal('Adults')">
+      👤 Adults
+    </button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- RECOMMENDATIONS & REMARKS -->
+  <h2>💡 Рекомендации</h2>
+
+  <div class="remark-box">
+    <p>
+      <strong>📌 Оптимальный формат:</strong>
+    </p>
+    <p style="margin-top: 0.3rem;">
+      <strong>2 индивидуальных занятия + 1 групповое занятие в неделю</strong> — 
+      это идеальное сочетание для стабильного прогресса. Такой формат гарантирует 
+      <strong>переход на следующий уровень в течение года</strong> при минимальном 
+      количестве пропусков.
+    </p>
+  </div>
+
+  <div class="remark-box">
+    <p>
+      <strong>📌 Для подростков:</strong>
+    </p>
+    <p style="margin-top: 0.3rem;">
+      Подростки старшего возраста могут присоединиться к <strong>взрослой группе</strong>, 
+      если чувствуют себя комфортно в общении со взрослыми и <strong>уровень языка позволяет</strong> 
+      это сделать.
+    </p>
+  </div>
+
+  <div class="remark-box">
+    <p>
+      <strong>📌 Рекомендация:</strong>
+    </p>
+    <p style="margin-top: 0.3rem;">
+      Для наилучшего результата мы рекомендуем <strong>комбинированный формат</strong> 
+      (индивидуальные + групповые занятия). Это позволяет прорабатывать слабые места 
+      индивидуально и практиковать язык в группе.
+    </p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BACK BUTTON -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="index.html" class="btn-back">⬅️ Вернуться на главную</a>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 English To Perfection — Групповые занятия</p>
+    <p style="margin-top:0.3rem;">Развивайте английский вместе с нами!</p>
+  </div>
+
+</div>
+
+<script>
+  let selectedGroup = '';
+
+  function openModal(group) {
+    selectedGroup = group;
+    const modal = document.getElementById('contactModal');
+    const title = document.getElementById('modalTitle');
+    const message = document.getElementById('modalMessage');
+
+    const groupNames = {
+      'Young Learners': '🧒 Young Learners',
+      'Teens': '🧑‍🎓 Teens',
+      'Adults': '👤 Adults'
+    };
+
+    title.textContent = `📱 Запись в группу: ${groupNames[group] || group}`;
+    message.textContent = `Нажмите на удобный для вас мессенджер, чтобы записаться в группу ${groupNames[group] || group}.`;
+
+    // Update links with pre-filled messages
+    const msg = encodeURIComponent(
+      `Здравствуйте! Я хочу записаться в группу ${groupNames[group] || group}. Расскажите, пожалуйста, о расписании и условиях.`
+    );
+
+    document.getElementById('telegramLink').href = `https://t.me/+79521212943?text=${msg}`;
+    document.getElementById('whatsappLink').href = `https://wa.me/79521212943?text=${msg}`;
+    document.getElementById('vkLink').href = `https://vk.ru/club226065699?text=${msg}`;
+    document.getElementById('maxLink').href = `https://max.ru/u/f9LHodD0cOLcYd95qXbkcGXOhoVVMgeH8IZVpYn3SF0f8tp2LbAG3kMZUkg?text=${msg}`;
+
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('contactModal').classList.remove('active');
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('contactModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+
+</body>
+</html>
