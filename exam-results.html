@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First ETP Exam Results – English To Perfection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body { background: #f0f4f9; padding: 2rem 1rem; display: flex; justify-content: center; }
+    .container { max-width: 1100px; width: 100%; background: white; border-radius: 32px; padding: 2.5rem 2.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+    .logo { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.2rem; }
+    .logo-icon { font-size: 2.4rem; background: #0b2b4a; color: #f5b042; width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.8rem; }
+    .logo-text { font-size: 2.6rem; font-weight: 700; color: #0b2b4a; letter-spacing: -0.5px; }
+    .logo-text span { color: #f5b042; }
+    .badge { background: #eef6ff; color: #0b2b4a; padding: 0.3rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-bottom: 0.5rem; }
+    .subhead { font-size: 1.1rem; color: #3a5a7a; margin: 0.3rem 0 1.8rem 0; border-left: 5px solid #f5b042; padding-left: 1rem; }
+
+    h1 { font-size: 2.2rem; color: #0b2b4a; margin-top: 1.5rem; }
+    h2 { font-size: 1.6rem; color: #0b2b4a; margin: 2rem 0 1rem 0; border-bottom: 3px solid #f5b042; padding-bottom: 0.4rem; }
+    h3 { font-size: 1.3rem; color: #0b2b4a; margin: 1.5rem 0 0.8rem 0; }
+
+    .event-info { background: #fef9e7; border-left: 6px solid #f5b042; border-radius: 16px; padding: 1.5rem 2rem; margin: 1.5rem 0; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between; }
+    .event-info .date { font-size: 1.2rem; font-weight: 600; color: #0b2b4a; }
+    .event-info .event-badge { background: #0b2b4a; color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-weight: 600; font-size: 0.85rem; }
+
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 18px; border: 1px solid #e2e8f0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 700px; }
+    th { background: #0b2b4a; color: white; padding: 0.9rem 0.6rem; text-align: left; font-weight: 600; white-space: nowrap; }
+    td { padding: 0.7rem 0.6rem; border-bottom: 1px solid #edf2f7; }
+    tr:hover { background: #f8fafc; }
+    .sub-row td { background: #f9fbfd; font-size: 0.85rem; padding-left: 2rem; }
+    .sub-row td:first-child { font-style: italic; color: #5a6a7a; }
+    .total-row td { font-weight: 700; background: #eef6ff; border-top: 2px solid #f5b042; }
+    .student-name { font-weight: 600; color: #0b2b4a; }
+
+    .level-tag { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.75rem; font-weight: 700; }
+    .level-a1 { background: #d4edda; color: #155724; }
+    .level-a2 { background: #d1ecf1; color: #0c5460; }
+    .level-b1 { background: #fef9e7; color: #856404; }
+    .level-b2 { background: #f8d7da; color: #721c24; }
+    .level-pre-a1 { background: #e2e3e5; color: #383d41; }
+    .level-c1 { background: #cce5ff; color: #004085; }
+
+    .pass { color: #28a745; font-weight: 600; }
+    .pass-msg { background: #d4edda; border-radius: 12px; padding: 0.8rem 1.2rem; border-left: 4px solid #28a745; margin-top: 1.5rem; }
+
+    .congrats-box { background: linear-gradient(135deg, #0b2b4a, #1a3a5a); color: white; border-radius: 20px; padding: 2rem 2.5rem; margin-top: 2.5rem; text-align: center; }
+    .congrats-box h2 { color: #f5b042; border-bottom: none; margin-top: 0; }
+    .congrats-box p { font-size: 1.1rem; line-height: 1.8; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+    .video-note { background: #eef6ff; border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; border: 2px dashed #4a76a8; text-align: center; }
+    .video-note p { color: #2a5a8a; font-size: 1.1rem; }
+
+    .next-exam-box { background: #f0f4e8; border-left: 6px solid #5a8a3a; border-radius: 16px; padding: 1.2rem 1.8rem; margin: 1.5rem 0; }
+    .next-exam-box p { font-size: 1rem; color: #2a3a2a; line-height: 1.7; }
+
+    .btn-back { background: #f5b042; color: #0b2b4a; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1.5rem; }
+    .btn-back:hover { background: #e6a03a; transform: scale(1.02); }
+
+    .footer { margin-top: 2.5rem; font-size: 0.85rem; color: #6a7e96; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+
+    @media (max-width: 700px) {
+      .logo-text { font-size: 1.8rem; }
+      .logo-icon { width: 48px; height: 48px; font-size: 1.4rem; }
+      .container { padding: 1.2rem 1rem; }
+      h1 { font-size: 1.6rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .event-info { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-icon">ETP</div>
+    <div class="logo-text">English <span>To</span> Perfection</div>
+  </div>
+  <span class="badge">🎓 First ETP Exam Results</span>
+  <div class="subhead">27 июня 2026 года — первый экзамен в истории English To Perfection.</div>
+
+  <!-- EVENT INFO -->
+  <div class="event-info">
+    <div>
+      <span class="event-badge">📅 27 июня 2026</span>
+    </div>
+    <div class="date">🎯 Первый экзамен ETP</div>
+    <div>
+      <span style="font-weight:600; color:#0b2b4a;">👥 8 участников</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ADULTS SECTION -->
+  <h2>👤 Взрослые</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Навык / Критерий</th>
+          <th>Макс.</th>
+          <th>Nastya</th>
+          <th>Natalie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>GRAMMAR</strong></td><td>40</td><td>23</td><td>28</td></tr>
+        <tr><td><strong>READING</strong></td><td>20</td><td>13.75</td><td>10</td></tr>
+        <tr><td><strong>WRITING</strong></td><td>25</td><td>13</td><td>19</td></tr>
+        <tr class="sub-row"><td>Task 1</td><td>12</td><td>7</td><td>9</td></tr>
+        <tr class="sub-row"><td>— Task achievement (Выполнение задачи)</td><td>4</td><td>3</td><td>4</td></tr>
+        <tr class="sub-row"><td>— Coherence &amp; cohesion (Связность и логика)</td><td>4</td><td>2</td><td>3</td></tr>
+        <tr class="sub-row"><td>— Language accuracy (Языковая точность)</td><td>4</td><td>2</td><td>2</td></tr>
+        <tr class="sub-row"><td>Task 2</td><td>13</td><td>6</td><td>10</td></tr>
+        <tr class="sub-row"><td>— Task achievement (Выполнение задачи)</td><td>4</td><td>1</td><td>4</td></tr>
+        <tr class="sub-row"><td>— Coherence &amp; cohesion (Связность и логика)</td><td>4</td><td>2</td><td>3</td></tr>
+        <tr class="sub-row"><td>— Language accuracy (Языковая точность)</td><td>5</td><td>3</td><td>3</td></tr>
+        <tr><td><strong>SPEAKING</strong></td><td>15</td><td>7.5</td><td>10</td></tr>
+        <tr class="sub-row"><td>Part 1</td><td>5</td><td>2.75</td><td>3</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>2</td><td>1.5</td><td>1.5</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>1.5</td><td>0.75</td><td>1</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>1.5</td><td>0.5</td><td>0.5</td></tr>
+        <tr class="sub-row"><td>Part 2</td><td>5</td><td>2.5</td><td>3.5</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>2</td><td>1</td><td>1.5</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>1.5</td><td>1</td><td>1.5</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>1.5</td><td>0.5</td><td>0.5</td></tr>
+        <tr class="sub-row"><td>Part 3</td><td>5</td><td>2.25</td><td>3.5</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>2</td><td>1</td><td>1.5</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>1.5</td><td>0.75</td><td>1.5</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>1.5</td><td>0.5</td><td>0.5</td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td><strong>57.25</strong></td><td><strong>67</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin:1rem 0;">
+    <div><span class="level-tag level-b1">Nastya — B1 (Intermediate)</span></div>
+    <div><span class="level-tag level-b2">Natalie — B2 (Upper-Intermediate)</span></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- YOUNG LEARNERS SECTION -->
+  <h2>🧒 Young Learners</h2>
+
+  <!-- A1 MOVERS -->
+  <h3>A1 Movers</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Навык</th>
+          <th>Макс.</th>
+          <th>Veronica</th>
+          <th>Hakob</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Reading &amp; Writing</td><td>45</td><td>36.5</td><td>32.5</td></tr>
+        <tr><td>Email</td><td>10</td><td>1.5</td><td>6.5</td></tr>
+        <tr><td>Grammar</td><td>67</td><td>39</td><td>17</td></tr>
+        <tr><td>Speaking</td><td>28</td><td>16</td><td>19</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>18</td><td>10</td><td>12</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>5</td><td>3</td><td>5</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>5</td><td>3</td><td>2</td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>150</strong></td><td><strong>93</strong></td><td><strong>75</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin:1rem 0;">
+    <div><span class="level-tag level-a1">Veronica — A1 (Beginner)</span></div>
+    <div><span class="level-tag level-a1">Hakob — A1 (Beginner)</span></div>
+  </div>
+
+  <!-- A1 STARTER (older) -->
+  <h3 style="margin-top:2rem;">A1 Starter (older)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Навык</th>
+          <th>Макс.</th>
+          <th>Artemyi</th>
+          <th>Arsenyi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Reading &amp; Writing</td><td>35</td><td>18</td><td>19</td></tr>
+        <tr><td>Grammar</td><td>77</td><td>56.25</td><td>60</td></tr>
+        <tr><td>Speaking</td><td>8</td><td>4.5</td><td>5</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>4</td><td>2.5</td><td>2.5</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>2</td><td>1</td><td>1</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>2</td><td>1</td><td>1.5</td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>120</strong></td><td><strong>78.75</strong></td><td><strong>84</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin:1rem 0;">
+    <div><span class="level-tag level-a1">Artemyi — A1 (Beginner)</span></div>
+    <div><span class="level-tag level-a1">Arsenyi — A1 (Beginner)</span></div>
+  </div>
+
+  <!-- Pre-A1 STARTER (younger) -->
+  <h3 style="margin-top:2rem;">Pre-A1 Starter (younger)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Навык</th>
+          <th>Макс.</th>
+          <th>Paulina</th>
+          <th>Sophia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Reading &amp; Writing</td><td>35</td><td>28</td><td>24</td></tr>
+        <tr><td>Grammar</td><td>55</td><td>25.5</td><td>29.5</td></tr>
+        <tr><td>Speaking</td><td>10</td><td>5.5</td><td>6</td></tr>
+        <tr class="sub-row"><td>— Fluency (Беглость речи)</td><td>6</td><td>3.5</td><td>4</td></tr>
+        <tr class="sub-row"><td>— Lexical resource (Словарный запас)</td><td>2</td><td>1</td><td>1</td></tr>
+        <tr class="sub-row"><td>— Grammar (Грамматика)</td><td>2</td><td>1</td><td>1</td></tr>
+        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td><strong>59</strong></td><td><strong>59.5</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin:1rem 0;">
+    <div><span class="level-tag level-pre-a1">Paulina — Pre-A1 (Starter)</span></div>
+    <div><span class="level-tag level-pre-a1">Sophia — Pre-A1 (Starter)</span></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- NEXT EXAM INFORMATION -->
+  <div class="next-exam-box">
+    <p><strong>📝 Следующий экзамен:</strong></p>
+    <p>В следующий раз экзамен будет <strong>полностью включать все четыре языковых навыка</strong>:</p>
+    <ul style="list-style: none; padding: 0.5rem 0 0 1rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+      <li>🎙️ <strong>Speaking</strong> (Говорение)</li>
+      <li>📖 <strong>Reading</strong> (Чтение)</li>
+      <li>✍️ <strong>Writing</strong> (Письмо)</li>
+      <li>🎧 <strong>Listening</strong> (Аудирование)</li>
+    </ul>
+    <p style="margin-top:0.5rem; font-style:italic; color:#3a5a3a;">Готовьтесь заранее — следующий экзамен будет более комплексным!</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- VIDEO NOTE -->
+  <div class="video-note">
+    <p>🎥 <strong>Видео с экзаменов будут опубликованы скоро!</strong></p>
+    <p style="font-size:0.95rem; margin-top:0.3rem;">Следите за обновлениями в нашем сообществе VK.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CONGRATULATIONS -->
+  <div class="congrats-box">
+    <h2>🎉 Поздравляем всех участников!</h2>
+    <p>
+      Вы все отлично справились с первым экзаменом в истории English To Perfection!<br />
+      Мы гордимся вашими результатами и вашим старанием.<br />
+      <strong>Veronica, Hakob, Artemyi, Arsenyi, Paulina, Sophia, Nastya и Natalie</strong> — вы молодцы!<br /><br />
+      📚 <strong>Продолжайте в том же духе!</strong> С каждым днём вы становитесь лучше.<br />
+      В следующий раз вы обязательно покажете ещё более высокие результаты! 💪
+    </p>
+    <p style="margin-top:1rem; font-size:1.2rem; color:#f5b042;">🌟 English To Perfection — ваш путь к совершенству!</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BACK BUTTON -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="index.html" class="btn-back">⬅️ Вернуться на главную</a>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 English To Perfection — Все права защищены.</p>
+    <p style="margin-top:0.3rem;">Первый экзамен ETP — 27 июня 2026 года</p>
+  </div>
+
+</div>
+</body>
+</html>
